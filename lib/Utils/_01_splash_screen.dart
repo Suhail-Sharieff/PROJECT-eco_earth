@@ -19,7 +19,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
 
   Future<void> navigateToHome()async{
     await Future.delayed(const Duration(seconds: 3));
-    Navigator.of(context).pushReplacementNamed(login_route);
+    if(mounted) Navigator.of(context).pushReplacementNamed(login_route);
   }
 
   @override

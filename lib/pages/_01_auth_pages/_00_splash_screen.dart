@@ -1,7 +1,8 @@
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/constants/_02_images_names.dart' ;
-import 'package:eco_earth/pages/_01_login_page.dart';
 import 'package:flutter/material.dart';
+
+import '_01_login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   static const route_name=splash_route;

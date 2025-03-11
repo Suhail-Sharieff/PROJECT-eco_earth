@@ -1,20 +1,25 @@
-import 'package:eco_earth/constants/_01_routes.dart';
-import 'package:eco_earth/pages/_01_login_page.dart';
-import 'package:eco_earth/pages/_03_verfify_email.dart';
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatefulWidget {
-  static String route_name = signup_route;
-  const SignupPage({super.key});
+import '../../constants/_01_routes.dart';
+import '_02_sign_up.dart';
+import '_04_forgot_password.dart';
+
+
+class LoginPage extends StatefulWidget {
+  static String route_name=login_route;
+  const LoginPage({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _LoginPageState extends State<LoginPage> {
+
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool passwordVisible = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -33,21 +38,22 @@ class _SignupPageState extends State<SignupPage> {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-          resizeToAvoidBottomInset: true,
-          body: SingleChildScrollView(
+          resizeToAvoidBottomInset: true, // Ensures the screen resizes when the keyboard appears
+          body: SingleChildScrollView( // Makes the whole page scrollable
             child: Column(
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                    colors: [
-                      Colors.purple.withOpacity(0.6), // Cyan/Turquoise
-                      const Color(0x00FFFFFF),
-                    ],
-                    begin: const AlignmentDirectional(0.0, -1.0),
-                    end: const AlignmentDirectional(0, 1.3),
-                    stops: const [0.0, 1.0],
-                  )),
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.pink.withOpacity(0.6), // Cyan/Turquoise
+                        const Color(0x00FFFFFF), // Transparent (adjust if needed)
+                      ],
+                      begin: const AlignmentDirectional(0.0, -1.0),
+                      end: const AlignmentDirectional(0, 1.3),
+                      stops: [0.0, 1.0],
+                    ),
+                  ),
                   width: double.infinity,
                   height: 300,
                   child: Column(
@@ -64,17 +70,16 @@ class _SignupPageState extends State<SignupPage> {
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Icon(
-                            Icons.app_registration,
+                            Icons.animation,
                             color: Colors.blue,
                             size: 44.0,
                           ),
                         ),
                       ),
                       const Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: Text(
-                          'Sign Up',
+                          'Login',
                           style: TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.bold,
@@ -83,21 +88,17 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                       ),
                       const Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                         child: Text(
-                          'Create an account to sign in',
-                          style: TextStyle(
-                            letterSpacing: 0.0,
-                          ),
+                          'Use the account below to sign in.',
+
                         ),
                       ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
                   child: Column(
                     children: [
                       // Email or Username field
@@ -138,12 +139,19 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       const SizedBox(height: 10), // Space between fields
                       // Forgot Password button
-                      SizedBox.fromSize(
-                        size: const Size(23, 23),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(ForgotPassWordPage.route_name);
+                        },
+                        child: const Text(
+                          'Forgot Password?',
+                          style: TextStyle(color: Colors.blue),
+                        ),
                       ),
+                      // Sign In button
                       TextButton.icon(
                         onPressed: () {
-                          Navigator.of(context).pushNamed(VerifyEmailPage.route_name);
+                          // Navigator.of(context).pushNamed(HomePage.route_name);
                         },
                         icon: const Icon(Icons.login),
                         label: Container(
@@ -155,7 +163,7 @@ class _SignupPageState extends State<SignupPage> {
                             borderRadius: BorderRadius.all(Radius.circular(23)),
                           ),
                           child: const Text(
-                            'Sign Up',
+                            'Sign In',
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.white,
@@ -168,13 +176,13 @@ class _SignupPageState extends State<SignupPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('Already Have an Accout?'),
+                          const Text('Don\'t have an account?'),
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed(LoginPage.route_name);
+                             Navigator.of(context).pushNamed(SignupPage.route_name);
                             },
                             child: const Text(
-                              'Login',
+                              'Sign Up',
                               style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold,

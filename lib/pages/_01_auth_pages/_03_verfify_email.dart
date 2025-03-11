@@ -1,6 +1,7 @@
 import 'package:eco_earth/constants/_01_routes.dart';
-import 'package:eco_earth/pages/_01_login_page.dart';
 import 'package:flutter/material.dart';
+
+import '_01_login_page.dart';
 
 class VerifyEmailPage extends StatefulWidget {
 
