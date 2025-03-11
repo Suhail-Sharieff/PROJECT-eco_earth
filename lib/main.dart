@@ -58,7 +58,8 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Image(image: AssetImage('assets/images/img.png',),),
+            const Image(image: AssetImage('assets/images/01'
+                '.png',),),
             const Text(
               'You have pushed the button this many times:',
             ),

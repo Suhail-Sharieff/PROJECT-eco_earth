@@ -78,7 +78,6 @@ class _SignupPageState extends State<SignupPage> {
                           style: TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Inter Tight',
                             letterSpacing: 0.0,
                           ),
                         ),
@@ -89,7 +88,6 @@ class _SignupPageState extends State<SignupPage> {
                         child: Text(
                           'Create an account to sign in',
                           style: TextStyle(
-                            fontFamily: 'Inter',
                             letterSpacing: 0.0,
                           ),
                         ),

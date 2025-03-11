@@ -55,7 +55,6 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
               const Text(
                 'Verify Your Email',
                 style: TextStyle(
-                  fontFamily: 'Inter Tight',
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -65,7 +64,6 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
               Text(
                 'We will send you an email with a link to reset your password. Please enter the email associated with your account below.',
                 style: TextStyle(
-                  fontFamily: 'Inter',
                   fontSize: 16.0,
                   color: Colors.black.withOpacity(0.6),
                   height: 1.5,
@@ -80,12 +78,10 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 decoration: InputDecoration(
                   labelText: 'Your email address',
                   labelStyle: const TextStyle(
-                    fontFamily: 'Inter',
                     color: Colors.black,
                   ),
                   hintText: 'Enter your email...',
                   hintStyle: TextStyle(
-                    fontFamily: 'Inter',
                     color: Colors.black.withOpacity(0.5),
                   ),
                   enabledBorder: OutlineInputBorder(
@@ -121,7 +117,6 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 18.0),
                 ),
                 style: const TextStyle(
-                  fontFamily: 'Inter',
                   fontSize: 16.0,
                 ),
                 keyboardType: TextInputType.emailAddress,

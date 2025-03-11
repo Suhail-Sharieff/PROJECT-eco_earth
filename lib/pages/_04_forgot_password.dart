@@ -78,7 +78,6 @@ class _ForgotPassWordPageState extends State<ForgotPassWordPage> {
                           style: TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Inter Tight',
                             letterSpacing: 0.0,
                           ),
                         ),
@@ -89,7 +88,6 @@ class _ForgotPassWordPageState extends State<ForgotPassWordPage> {
                         child: Text(
                           'Reset your password',
                           style: TextStyle(
-                            fontFamily: 'Inter',
                             letterSpacing: 0.0,
                           ),
                         ),

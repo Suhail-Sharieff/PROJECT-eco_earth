@@ -83,7 +83,6 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Inter Tight',
                             letterSpacing: 0.0,
                           ),
                         ),
@@ -92,10 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                         child: Text(
                           'Use the account below to sign in.',
-                          style: TextStyle(
-                            fontFamily: 'Inter',
-                            letterSpacing: 0.0,
-                          ),
+
                         ),
                       ),
                     ],

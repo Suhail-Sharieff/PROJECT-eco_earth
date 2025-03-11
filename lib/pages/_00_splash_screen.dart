@@ -1,5 +1,5 @@
 import 'package:eco_earth/constants/_01_routes.dart';
-import 'package:eco_earth/main.dart';
+import 'package:eco_earth/constants/_02_images_names.dart' ;
 import 'package:eco_earth/pages/_01_login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -44,9 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
               ]),
             ),
             SizedBox.fromSize(size: Size(34, 34),),
-            const SizedBox(height:100,
+            SizedBox(height:100,
                 width: 50,
-                child: Image(image: AssetImage('assets/images/img.png'))),
+                child: MyImages.image_01,),
           ],
         ),
       ),
