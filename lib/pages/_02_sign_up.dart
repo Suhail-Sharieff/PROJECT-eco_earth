@@ -16,6 +16,18 @@ class _SignupPageState extends State<SignupPage> {
   final passwordController = TextEditingController();
   bool passwordVisible = false;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white,

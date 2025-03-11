@@ -21,6 +21,18 @@ class _LoginPageState extends State<LoginPage> {
   bool passwordVisible = false;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.white,
@@ -143,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                       // Sign In button
                       TextButton.icon(
                         onPressed: () {
-                          Navigator.of(context).pushNamed(HomePage.route_name);
+                          // Navigator.of(context).pushNamed(HomePage.route_name);
                         },
                         icon: const Icon(Icons.login),
                         label: Container(
