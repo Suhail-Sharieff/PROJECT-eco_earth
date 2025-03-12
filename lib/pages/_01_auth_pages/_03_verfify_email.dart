@@ -1,4 +1,6 @@
+import 'package:eco_earth/Utils/_03_show_toast.dart';
 import 'package:eco_earth/constants/_01_routes.dart';
+import 'package:eco_earth/controllers/_01_auth_controllers/auth_methods.dart';
 import 'package:flutter/material.dart';
 
 import '_01_login_page.dart';
@@ -63,7 +65,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
               ),
               const SizedBox(height: 12),
               Text(
-                'We will send you an email with a link to reset your password. Please enter the email associated with your account below.',
+                'We will send you an email with a link to verify your email. Please enter the email associated with your account below.',
                 style: TextStyle(
                   fontSize: 16.0,
                   color: Colors.black.withOpacity(0.6),
@@ -129,8 +131,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
               // Send Link button
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async{
                     print('Send Link pressed...');
+                    await AuthMethods.sendVerifyLink();
+                    showToast('Email sent! Pls login!', Colors.greenAccent);
+                    Navigator.of(context).pushNamedAndRemoveUntil(login_route, (_)=>false);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
@@ -140,7 +145,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                     ),
                   ),
                   child: const Text(
-                    'Send Reset Link',
+                    'Send verification Link',
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,

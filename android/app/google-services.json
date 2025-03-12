@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "383893850150",
+    "project_id": "eco-earth-a3bb8",
+    "storage_bucket": "eco-earth-a3bb8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383893850150:android:d847ccab4c94ec8cfcbee7",
+        "android_client_info": {
+          "package_name": "com.google_solution_challenge.eco_earth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBw-n94qmsifZQEHDyiA5iZjpXsGXDUess"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,5 @@
+enum SignedUpUserStatus{
+  IS_EMAIL_VERFIED,
+  IS_NOT_EMAIL_VERFIED,
+  INVALID
+}

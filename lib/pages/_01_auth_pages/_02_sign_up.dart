@@ -1,4 +1,5 @@
 import 'package:eco_earth/constants/_01_routes.dart';
+import 'package:eco_earth/controllers/_01_auth_controllers/auth_methods.dart';
 import 'package:flutter/material.dart';
 
 import '_01_login_page.dart';
@@ -143,8 +144,15 @@ class _SignupPageState extends State<SignupPage> {
                         size: const Size(23, 23),
                       ),
                       TextButton.icon(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed(VerifyEmailPage.route_name);
+                        onPressed: () async {
+                          if (await AuthMethods.signUp(
+                              email: emailController.text,
+                              password: passwordController.text)) {
+                            if(mounted) {
+                              Navigator.of(context)
+                                .pushNamed(VerifyEmailPage.route_name);
+                            }
+                          }
                         },
                         icon: const Icon(Icons.login),
                         label: Container(
@@ -172,7 +180,8 @@ class _SignupPageState extends State<SignupPage> {
                           const Text('Already Have an Accout?'),
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).pushNamed(LoginPage.route_name);
+                              Navigator.of(context)
+                                  .pushNamed(LoginPage.route_name);
                             },
                             child: const Text(
                               'Login',

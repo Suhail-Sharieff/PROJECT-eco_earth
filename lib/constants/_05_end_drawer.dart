@@ -1,5 +1,8 @@
 import 'package:eco_earth/Utils/_02_button.dart';
+import 'package:eco_earth/controllers/_01_auth_controllers/auth_methods.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../pages/_05_Profile_Page/_01_profile_page.dart';
 import '../pages/_06_Settings/_01_settings_page.dart';
@@ -31,9 +34,13 @@ Widget get_end_drawer(BuildContext context) {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text(
-                        "Your Name",
-                        style: TextStyle(fontFamily: 'Inter', fontSize: 18),
+                      Expanded(
+                        child: Text(
+                          "${FirebaseAuth.instance.currentUser!.email}",
+                          style: const TextStyle(
+                              fontFamily: 'Inter', fontSize: 18),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                       CircleAvatar(
                         child: MyImages.user_image, // Adjust radius as needed
@@ -55,9 +62,14 @@ Widget get_end_drawer(BuildContext context) {
                       con: context, title: title, toNavigate: toNavigate);
                 }),
           ),
-          MyButton(buttonTitle: 'Logout', isLoading: false, onPressed: ()async{
-
-          }, btnColor: Colors.red,)
+          MyButton(
+            buttonTitle: 'Logout',
+            isLoading: false,
+            onPressed: () async {
+              await AuthMethods.logout();
+            },
+            btnColor: Colors.red,
+          ),
         ],
       ),
     ),
@@ -66,17 +78,16 @@ Widget get_end_drawer(BuildContext context) {
 
 ListTile listTile(
     {required BuildContext con,
-      required String title,
-      String subtitle = '',
-      Widget? toNavigate}) {
+    required String title,
+    String subtitle = '',
+    Widget? toNavigate}) {
   return ListTile(
     title: Text(title, style: const TextStyle(fontFamily: 'Inter')),
     trailing: IconButton(
       icon: const Icon(Icons.arrow_forward_ios_rounded),
       color: Colors.red,
       onPressed: () {
-        Navigator.of(con)
-            .push(MaterialPageRoute(builder: (_) => toNavigate!));
+        Navigator.of(con).push(MaterialPageRoute(builder: (_) => toNavigate!));
       },
     ),
     tileColor: Colors.white54,
