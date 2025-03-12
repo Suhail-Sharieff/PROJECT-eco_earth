@@ -62,13 +62,16 @@ Widget get_end_drawer(BuildContext context) {
                       con: context, title: title, toNavigate: toNavigate);
                 }),
           ),
-          MyButton(
-            buttonTitle: 'Logout',
-            isLoading: false,
-            onPressed: () async {
-              await AuthMethods.logout();
-            },
-            btnColor: Colors.red,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 34),
+            child: MyButton(
+              buttonTitle: 'Logout',
+              isLoading: false,
+              onPressed: () async {
+                await AuthMethods.logout();
+              },
+              btnColor: Colors.red,
+            ),
           ),
         ],
       ),

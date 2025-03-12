@@ -3,6 +3,9 @@ import 'package:eco_earth/pages/_01_auth_pages/_01_login_page.dart';
 import 'package:eco_earth/pages/_01_auth_pages/_03_verfify_email.dart';
 import 'package:eco_earth/pages/_02_Home_page/_01_home_page.dart';
 import 'package:eco_earth/pages/_04_Leaderboard_page/_01_leader_board.dart';
+import 'package:eco_earth/pages/_05_Profile_Page/_01_profile_page.dart';
+import 'package:eco_earth/pages/_05_Profile_Page/_02_edit_name.dart';
+import 'package:eco_earth/pages/_05_Profile_Page/_03_edit_phone.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/_01_auth_pages/_02_sign_up.dart';
@@ -21,6 +24,9 @@ const landing_route='/landing/';
 const home_route='/home/';
 const discover_route='/discover/';
 const leader_board_route='/leader_board/';
+const profile_route='/profile/';
+const edit_user_name='/edit_user_name/';
+const edit_user_ph_no='/edit_user_ph_no/';
 
 
 
@@ -34,4 +40,7 @@ final Map<String, WidgetBuilder> routes = {
   VerifyEmailPage.route_name:(_)=>const VerifyEmailPage(),
   ForgotPassWordPage.route_name:(_)=>const ForgotPassWordPage(),
   LeaderBoardPage.route_name:(_)=>const LeaderBoardPage(),
+  ProfilePage.route_name:(_)=>const ProfilePage(),
+  EditNameFormPage.route_name:(_)=>const EditNameFormPage(),
+  EditPhoneFormPage.route_name:(_)=>const EditPhoneFormPage(),
 };
