@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Vendor _$VendorFromJson(Map<String, dynamic> json) {
+  return _Vendor.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Vendor {
   @JsonKey(name: 'firebase_uid')
@@ -28,6 +32,9 @@ mixin _$Vendor {
   int get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'type_cost_map')
   Map<String, dynamic> get types_cost_map => throw _privateConstructorUsedError;
+
+  /// Serializes this Vendor to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Vendor
   /// with the given fields replaced by the non-null parameter values.
@@ -182,6 +189,9 @@ class _$VendorImpl implements _Vendor {
       final Map<String, dynamic> types_cost_map = const {'e-waste': 110}})
       : _types_cost_map = types_cost_map;
 
+  factory _$VendorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$VendorImplFromJson(json);
+
   @override
   @JsonKey(name: 'firebase_uid')
   final String firebaseUid;
@@ -229,6 +239,7 @@ class _$VendorImpl implements _Vendor {
                 .equals(other._types_cost_map, _types_cost_map));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -246,6 +257,13 @@ class _$VendorImpl implements _Vendor {
   @pragma('vm:prefer-inline')
   _$$VendorImplCopyWith<_$VendorImpl> get copyWith =>
       __$$VendorImplCopyWithImpl<_$VendorImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$VendorImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Vendor implements Vendor {
@@ -257,6 +275,8 @@ abstract class _Vendor implements Vendor {
       @JsonKey(name: 'vendor_rating') final int rating,
       @JsonKey(name: 'type_cost_map')
       final Map<String, dynamic> types_cost_map}) = _$VendorImpl;
+
+  factory _Vendor.fromJson(Map<String, dynamic> json) = _$VendorImpl.fromJson;
 
   @override
   @JsonKey(name: 'firebase_uid')

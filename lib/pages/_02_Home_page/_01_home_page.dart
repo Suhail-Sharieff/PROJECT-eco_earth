@@ -1,6 +1,7 @@
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/constants/_05_end_drawer.dart';
 import 'package:eco_earth/pages/_07_complaints_page/_01_complaints_page.dart';
+import 'package:eco_earth/pages/_08_vendor_registeration_page/_01_vendor_registeration.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -60,6 +61,7 @@ class _HomePageState extends State<HomePage> {
       'label': 'Register as a Vendor',
       'onTap': () {
         // TODO: Navigate or perform action for Vendor Registration
+        Get.toNamed(VendorRegistrationPage.route_name);
       },
     },
   ];

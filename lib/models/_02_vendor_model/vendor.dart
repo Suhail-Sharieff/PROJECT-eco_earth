@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'vendor.freezed.dart';
 part 'vendor.g.dart';
-
+//flutter packages pub run build_runner build
 @freezed
 class Vendor with _$Vendor{
   @JsonSerializable(explicitToJson: true)
@@ -15,6 +15,7 @@ class Vendor with _$Vendor{
     @Default(0) @JsonKey(name: 'vendor_rating') int rating,
     @Default({'e-waste':110,}) @JsonKey(name: 'type_cost_map') Map<String,dynamic> types_cost_map,
 })=_Vendor;
+  factory Vendor.fromJson(Map<String, dynamic> json) => _$VendorFromJson(json);
 }
 
 class Contract{
