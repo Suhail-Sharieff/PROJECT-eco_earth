@@ -1,7 +1,9 @@
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/constants/_05_end_drawer.dart';
+import 'package:eco_earth/pages/_07_complaints_page/_01_complaints_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
 import '../../constants/_04_appbar.dart';
 
@@ -28,6 +30,8 @@ class _HomePageState extends State<HomePage> {
       'label': 'Register Complaint',
       'onTap': () {
         // TODO: Navigate or perform action for Complaint Registration
+        Get.to( const ComplaintsPage());
+        print("HI");
       },
     },
     {

@@ -4,6 +4,7 @@ import 'package:eco_earth/Utils/_03_show_toast.dart';
 import 'package:eco_earth/enum/_01_signed_up_user_status.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthMethods {
   static final  instance = FirebaseAuth.instance;
@@ -31,6 +32,12 @@ class AuthMethods {
       final res=await instance.signInWithEmailAndPassword(
           email: email, password: password);
       if(res.user!.emailVerified){
+
+        //also create this user in Supabase
+        await Supabase.instance.client.from('users').insert({
+          'firebase_uid':instance.currentUser!.uid,
+        });
+
         return SignedUpUserStatus.IS_EMAIL_VERFIED;
       }
       return SignedUpUserStatus.IS_NOT_EMAIL_VERFIED;

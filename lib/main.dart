@@ -1,7 +1,9 @@
+import 'package:eco_earth/secrets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'constants/_01_routes.dart';
 import 'firebase_options.dart';
@@ -10,7 +12,10 @@ import 'controllers/_02_settings_controller/_01_setting_controller.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+  await Supabase.initialize(
+    url: SUPABASE_URL,
+    anonKey: ANON_KEY,
+  );
   // Ensure SettingsController is initialized before running the app
   Get.put(SettingsController());
 

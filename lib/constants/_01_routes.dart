@@ -6,6 +6,7 @@ import 'package:eco_earth/pages/_04_Leaderboard_page/_01_leader_board.dart';
 import 'package:eco_earth/pages/_05_Profile_Page/_01_profile_page.dart';
 import 'package:eco_earth/pages/_05_Profile_Page/_02_edit_name.dart';
 import 'package:eco_earth/pages/_05_Profile_Page/_03_edit_phone.dart';
+import 'package:eco_earth/pages/_07_complaints_page/_01_complaints_page.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/_01_auth_pages/_02_sign_up.dart';
@@ -27,6 +28,7 @@ const leader_board_route='/leader_board/';
 const profile_route='/profile/';
 const edit_user_name='/edit_user_name/';
 const edit_user_ph_no='/edit_user_ph_no/';
+const complaint_route='/complaints/';
 
 
 
@@ -43,4 +45,5 @@ final Map<String, WidgetBuilder> routes = {
   ProfilePage.route_name:(_)=>const ProfilePage(),
   EditNameFormPage.route_name:(_)=>const EditNameFormPage(),
   EditPhoneFormPage.route_name:(_)=>const EditPhoneFormPage(),
+  ComplaintsPage.route_name:(_)=>const ComplaintsPage(),
 };
