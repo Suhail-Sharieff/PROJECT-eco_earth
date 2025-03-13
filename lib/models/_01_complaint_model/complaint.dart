@@ -11,7 +11,6 @@ part 'complaint.g.dart'; // Ensure JSON serialization works
 class Complaint with _$Complaint {
   @JsonSerializable(explicitToJson: true)
   factory Complaint({
-    @Default(-1) @JsonKey(name: 'complaint_id') int complaintId,
     @Default('12/12/2025') @JsonKey(name: 'created_at') String createdAt,
     @Default('no_firebase_uid_given') @JsonKey(name: 'firebase_uid') String firebaseUid,
     @Default('no_photo_url_given') @JsonKey(name: 'photo_url') String photoUrl,

@@ -1,0 +1,23 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+
+part 'vendor.freezed.dart';
+part 'vendor.g.dart';
+
+@freezed
+class Vendor with _$Vendor{
+  @JsonSerializable(explicitToJson: true)
+  factory Vendor({
+    @Default('no_firebase_uid_given') @JsonKey(name: 'firebase_uid') String firebaseUid,
+    @Default('no_vendor_name_given') @JsonKey(name: 'vendor_name') String vendor_name,
+    @Default('no_location_given') @JsonKey(name: 'vendor_location') String vendor_location,
+    @Default('no_shop_name_given') @JsonKey(name: 'vendor_shop_name') String vendor_shop_name,
+    @Default(0) @JsonKey(name: 'vendor_rating') int rating,
+    @Default({'e-waste':110,}) @JsonKey(name: 'type_cost_map') Map<String,dynamic> types_cost_map,
+})=_Vendor;
+}
+
+class Contract{
+  final int contracts_vendor_id;
+  Contract({required this.contracts_vendor_id});
+}

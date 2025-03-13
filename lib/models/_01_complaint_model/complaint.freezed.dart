@@ -20,8 +20,6 @@ Complaint _$ComplaintFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Complaint {
-  @JsonKey(name: 'complaint_id')
-  int get complaintId => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   String get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'firebase_uid')
@@ -51,8 +49,7 @@ abstract class $ComplaintCopyWith<$Res> {
       _$ComplaintCopyWithImpl<$Res, Complaint>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'complaint_id') int complaintId,
-      @JsonKey(name: 'created_at') String createdAt,
+      {@JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'firebase_uid') String firebaseUid,
       @JsonKey(name: 'photo_url') String photoUrl,
       @JsonKey(name: 'location') String location,
@@ -75,7 +72,6 @@ class _$ComplaintCopyWithImpl<$Res, $Val extends Complaint>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? complaintId = null,
     Object? createdAt = null,
     Object? firebaseUid = null,
     Object? photoUrl = null,
@@ -84,10 +80,6 @@ class _$ComplaintCopyWithImpl<$Res, $Val extends Complaint>
     Object? noOfLikes = null,
   }) {
     return _then(_value.copyWith(
-      complaintId: null == complaintId
-          ? _value.complaintId
-          : complaintId // ignore: cast_nullable_to_non_nullable
-              as int,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -125,8 +117,7 @@ abstract class _$$ComplaintImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'complaint_id') int complaintId,
-      @JsonKey(name: 'created_at') String createdAt,
+      {@JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'firebase_uid') String firebaseUid,
       @JsonKey(name: 'photo_url') String photoUrl,
       @JsonKey(name: 'location') String location,
@@ -147,7 +138,6 @@ class __$$ComplaintImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? complaintId = null,
     Object? createdAt = null,
     Object? firebaseUid = null,
     Object? photoUrl = null,
@@ -156,10 +146,6 @@ class __$$ComplaintImplCopyWithImpl<$Res>
     Object? noOfLikes = null,
   }) {
     return _then(_$ComplaintImpl(
-      complaintId: null == complaintId
-          ? _value.complaintId
-          : complaintId // ignore: cast_nullable_to_non_nullable
-              as int,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -193,8 +179,7 @@ class __$$ComplaintImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$ComplaintImpl implements _Complaint {
   _$ComplaintImpl(
-      {@JsonKey(name: 'complaint_id') this.complaintId = -1,
-      @JsonKey(name: 'created_at') this.createdAt = 'no_class_name_given',
+      {@JsonKey(name: 'created_at') this.createdAt = '12/12/2025',
       @JsonKey(name: 'firebase_uid') this.firebaseUid = 'no_firebase_uid_given',
       @JsonKey(name: 'photo_url') this.photoUrl = 'no_photo_url_given',
       @JsonKey(name: 'location') this.location = 'no_location_given',
@@ -204,9 +189,6 @@ class _$ComplaintImpl implements _Complaint {
   factory _$ComplaintImpl.fromJson(Map<String, dynamic> json) =>
       _$$ComplaintImplFromJson(json);
 
-  @override
-  @JsonKey(name: 'complaint_id')
-  final int complaintId;
   @override
   @JsonKey(name: 'created_at')
   final String createdAt;
@@ -228,7 +210,7 @@ class _$ComplaintImpl implements _Complaint {
 
   @override
   String toString() {
-    return 'Complaint(complaintId: $complaintId, createdAt: $createdAt, firebaseUid: $firebaseUid, photoUrl: $photoUrl, location: $location, description: $description, noOfLikes: $noOfLikes)';
+    return 'Complaint(createdAt: $createdAt, firebaseUid: $firebaseUid, photoUrl: $photoUrl, location: $location, description: $description, noOfLikes: $noOfLikes)';
   }
 
   @override
@@ -236,8 +218,6 @@ class _$ComplaintImpl implements _Complaint {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ComplaintImpl &&
-            (identical(other.complaintId, complaintId) ||
-                other.complaintId == complaintId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.firebaseUid, firebaseUid) ||
@@ -254,8 +234,8 @@ class _$ComplaintImpl implements _Complaint {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, complaintId, createdAt,
-      firebaseUid, photoUrl, location, description, noOfLikes);
+  int get hashCode => Object.hash(runtimeType, createdAt, firebaseUid, photoUrl,
+      location, description, noOfLikes);
 
   /// Create a copy of Complaint
   /// with the given fields replaced by the non-null parameter values.
@@ -275,8 +255,7 @@ class _$ComplaintImpl implements _Complaint {
 
 abstract class _Complaint implements Complaint {
   factory _Complaint(
-      {@JsonKey(name: 'complaint_id') final int complaintId,
-      @JsonKey(name: 'created_at') final String createdAt,
+      {@JsonKey(name: 'created_at') final String createdAt,
       @JsonKey(name: 'firebase_uid') final String firebaseUid,
       @JsonKey(name: 'photo_url') final String photoUrl,
       @JsonKey(name: 'location') final String location,
@@ -286,9 +265,6 @@ abstract class _Complaint implements Complaint {
   factory _Complaint.fromJson(Map<String, dynamic> json) =
       _$ComplaintImpl.fromJson;
 
-  @override
-  @JsonKey(name: 'complaint_id')
-  int get complaintId;
   @override
   @JsonKey(name: 'created_at')
   String get createdAt;

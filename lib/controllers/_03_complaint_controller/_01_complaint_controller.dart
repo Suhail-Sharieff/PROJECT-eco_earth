@@ -16,7 +16,6 @@ class ComplaintController extends GetxController {
           photoUrl: photo_url,
           firebaseUid: finstance.uid,
           description: description,
-          complaintId: Random().nextInt(10000),
           createdAt: DateTime.now().toIso8601String(),
           location: location,
           noOfLikes: 0);

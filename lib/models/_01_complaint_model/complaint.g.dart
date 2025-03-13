@@ -8,8 +8,7 @@ part of 'complaint.dart';
 
 _$ComplaintImpl _$$ComplaintImplFromJson(Map<String, dynamic> json) =>
     _$ComplaintImpl(
-      complaintId: (json['complaint_id'] as num?)?.toInt() ?? -1,
-      createdAt: json['created_at'] as String? ?? 'no_class_name_given',
+      createdAt: json['created_at'] as String? ?? '12/12/2025',
       firebaseUid: json['firebase_uid'] as String? ?? 'no_firebase_uid_given',
       photoUrl: json['photo_url'] as String? ?? 'no_photo_url_given',
       location: json['location'] as String? ?? 'no_location_given',
@@ -19,7 +18,6 @@ _$ComplaintImpl _$$ComplaintImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ComplaintImplToJson(_$ComplaintImpl instance) =>
     <String, dynamic>{
-      'complaint_id': instance.complaintId,
       'created_at': instance.createdAt,
       'firebase_uid': instance.firebaseUid,
       'photo_url': instance.photoUrl,
