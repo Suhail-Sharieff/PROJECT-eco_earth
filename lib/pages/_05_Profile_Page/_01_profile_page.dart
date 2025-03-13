@@ -28,11 +28,14 @@ class _ProfilePageState extends State<ProfilePage> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Profile picture icon with edit capability
             GestureDetector(
               onTap: () {
                 // TODO: Navigate to profile picture editing page
+                print(user);
               },
               child: CircleAvatar(
                 radius: 50,
@@ -61,12 +64,13 @@ class _ProfilePageState extends State<ProfilePage> {
             // Phone number display with edit option
             buildUserInfoDisplay(
               label: "Phone",
-              value: user?.phoneNumber ?? "+91 12345 6789",
+              value:  "+91 12345 6789",
               onEdit: () {
                 // TODO: Navigate to phone number editing page
                 Navigator.of(context).pushNamed(EditPhoneFormPage.route_name);
               },
             ),
+            buildUserInfoDisplay(label: 'Verfication Status', value: user!.emailVerified?'Verified':'Not verified !', onEdit: (){},showEdit: false),
           ],
         ),
       ),

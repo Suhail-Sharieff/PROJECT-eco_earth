@@ -1,13 +1,19 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'constants/_01_routes.dart';
 import 'firebase_options.dart';
-Future<void> main() async {
+import 'controllers/_02_settings_controller/_01_setting_controller.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  // Ensure SettingsController is initialized before running the app
+  Get.put(SettingsController());
+
   runApp(const MyApp());
 }
 
@@ -16,18 +22,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    final SettingsController sc = Get.find(); // Get the controller instance
+
+    return Obx(() => GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        textTheme: GoogleFonts.aBeeZeeTextTheme(
-          Theme.of(context).textTheme,
+        textTheme: GoogleFonts.aBeeZeeTextTheme().apply(
+          bodyColor: sc.darkMode.value ? Colors.white : Colors.black,  // White text in dark mode
+          displayColor: sc.darkMode.value ? Colors.white : Colors.black,
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: sc.darkMode.value ? Brightness.dark : Brightness.light, // Dynamic Theme
+        ),
         useMaterial3: true,
       ),
       initialRoute: landing_route,
       routes: routes,
-    );
+    ));
   }
 }
-

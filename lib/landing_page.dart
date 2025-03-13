@@ -90,7 +90,7 @@ NavigationBar get_nav_bar(int currentPageIndex,Function(int) onChange) {
 
       NavigationDestination(
         icon: FaIcon(FontAwesomeIcons.rankingStar),
-        label: 'Map',
+        label: 'Leaderboard',
       ),
     ],
   );
