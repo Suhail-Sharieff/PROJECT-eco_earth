@@ -46,6 +46,11 @@ dependencies:
   build_runner: ^2.4.13
   json_annotation: ^4.9.0
   json_serializable: ^6.7.1
+  image_picker: ^1.1.2
+  google_generative_ai: ^0.4.6
+  flutter_markdown: ^0.7.6+2
+  flutter_gemini: ^3.0.0
+  lottie: ^3.2.0
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +81,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
+    - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.google_solution_challenge.eco_earth"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = "25.1.8937393"
 
     compileOptions {

@@ -1,6 +1,7 @@
 import 'package:eco_earth/secrets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -18,7 +19,7 @@ void main() async {
   );
   // Ensure SettingsController is initialized before running the app
   Get.put(SettingsController());
-
+  Gemini.init(apiKey: GEMINI_API_KEY);
   runApp(const MyApp());
 }
 

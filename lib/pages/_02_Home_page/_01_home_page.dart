@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../constants/_04_appbar.dart';
+import '../_10_waste_classify/_01_classify_waste.dart';
 
 class HomePage extends StatefulWidget {
   static final String route_name = home_route;
@@ -53,9 +54,10 @@ class _HomePageState extends State<HomePage> {
     },
     {
       'icon': FontAwesomeIcons.building,
-      'label': 'Municipalities Around Me',
+      'label': 'E-waste classifier',
       'onTap': () {
         // TODO: Navigate or perform action for Municipalities
+        Get.to(const ClassifyWastePage());
       },
     },
     {
