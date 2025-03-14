@@ -2,6 +2,7 @@ import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/constants/_05_end_drawer.dart';
 import 'package:eco_earth/pages/_07_complaints_page/_01_complaints_page.dart';
 import 'package:eco_earth/pages/_08_vendor_registeration_page/_01_vendor_registeration.dart';
+import 'package:eco_earth/pages/_09_recycling_centres_page/_01_recycling_centres_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> {
       'label': 'Recycling Centres Near Me',
       'onTap': () {
         // TODO: Navigate or perform action for Recycling Centres
+        Get.toNamed(RecyclingCentres.route_name);
       },
     },
     {

@@ -30,6 +30,8 @@ mixin _$Vendor {
   String get vendor_shop_name => throw _privateConstructorUsedError;
   @JsonKey(name: 'vendor_rating')
   int get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vendor_phone_number')
+  String get vendor_phone_number => throw _privateConstructorUsedError;
   @JsonKey(name: 'type_cost_map')
   Map<String, dynamic> get types_cost_map => throw _privateConstructorUsedError;
 
@@ -53,6 +55,7 @@ abstract class $VendorCopyWith<$Res> {
       @JsonKey(name: 'vendor_location') String vendor_location,
       @JsonKey(name: 'vendor_shop_name') String vendor_shop_name,
       @JsonKey(name: 'vendor_rating') int rating,
+      @JsonKey(name: 'vendor_phone_number') String vendor_phone_number,
       @JsonKey(name: 'type_cost_map') Map<String, dynamic> types_cost_map});
 }
 
@@ -76,6 +79,7 @@ class _$VendorCopyWithImpl<$Res, $Val extends Vendor>
     Object? vendor_location = null,
     Object? vendor_shop_name = null,
     Object? rating = null,
+    Object? vendor_phone_number = null,
     Object? types_cost_map = null,
   }) {
     return _then(_value.copyWith(
@@ -99,6 +103,10 @@ class _$VendorCopyWithImpl<$Res, $Val extends Vendor>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as int,
+      vendor_phone_number: null == vendor_phone_number
+          ? _value.vendor_phone_number
+          : vendor_phone_number // ignore: cast_nullable_to_non_nullable
+              as String,
       types_cost_map: null == types_cost_map
           ? _value.types_cost_map
           : types_cost_map // ignore: cast_nullable_to_non_nullable
@@ -120,6 +128,7 @@ abstract class _$$VendorImplCopyWith<$Res> implements $VendorCopyWith<$Res> {
       @JsonKey(name: 'vendor_location') String vendor_location,
       @JsonKey(name: 'vendor_shop_name') String vendor_shop_name,
       @JsonKey(name: 'vendor_rating') int rating,
+      @JsonKey(name: 'vendor_phone_number') String vendor_phone_number,
       @JsonKey(name: 'type_cost_map') Map<String, dynamic> types_cost_map});
 }
 
@@ -141,6 +150,7 @@ class __$$VendorImplCopyWithImpl<$Res>
     Object? vendor_location = null,
     Object? vendor_shop_name = null,
     Object? rating = null,
+    Object? vendor_phone_number = null,
     Object? types_cost_map = null,
   }) {
     return _then(_$VendorImpl(
@@ -164,6 +174,10 @@ class __$$VendorImplCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as int,
+      vendor_phone_number: null == vendor_phone_number
+          ? _value.vendor_phone_number
+          : vendor_phone_number // ignore: cast_nullable_to_non_nullable
+              as String,
       types_cost_map: null == types_cost_map
           ? _value._types_cost_map
           : types_cost_map // ignore: cast_nullable_to_non_nullable
@@ -185,6 +199,8 @@ class _$VendorImpl implements _Vendor {
       @JsonKey(name: 'vendor_shop_name')
       this.vendor_shop_name = 'no_shop_name_given',
       @JsonKey(name: 'vendor_rating') this.rating = 0,
+      @JsonKey(name: 'vendor_phone_number')
+      this.vendor_phone_number = '+91 12345 67890',
       @JsonKey(name: 'type_cost_map')
       final Map<String, dynamic> types_cost_map = const {'e-waste': 110}})
       : _types_cost_map = types_cost_map;
@@ -207,6 +223,9 @@ class _$VendorImpl implements _Vendor {
   @override
   @JsonKey(name: 'vendor_rating')
   final int rating;
+  @override
+  @JsonKey(name: 'vendor_phone_number')
+  final String vendor_phone_number;
   final Map<String, dynamic> _types_cost_map;
   @override
   @JsonKey(name: 'type_cost_map')
@@ -218,7 +237,7 @@ class _$VendorImpl implements _Vendor {
 
   @override
   String toString() {
-    return 'Vendor(firebaseUid: $firebaseUid, vendor_name: $vendor_name, vendor_location: $vendor_location, vendor_shop_name: $vendor_shop_name, rating: $rating, types_cost_map: $types_cost_map)';
+    return 'Vendor(firebaseUid: $firebaseUid, vendor_name: $vendor_name, vendor_location: $vendor_location, vendor_shop_name: $vendor_shop_name, rating: $rating, vendor_phone_number: $vendor_phone_number, types_cost_map: $types_cost_map)';
   }
 
   @override
@@ -235,6 +254,8 @@ class _$VendorImpl implements _Vendor {
             (identical(other.vendor_shop_name, vendor_shop_name) ||
                 other.vendor_shop_name == vendor_shop_name) &&
             (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.vendor_phone_number, vendor_phone_number) ||
+                other.vendor_phone_number == vendor_phone_number) &&
             const DeepCollectionEquality()
                 .equals(other._types_cost_map, _types_cost_map));
   }
@@ -248,6 +269,7 @@ class _$VendorImpl implements _Vendor {
       vendor_location,
       vendor_shop_name,
       rating,
+      vendor_phone_number,
       const DeepCollectionEquality().hash(_types_cost_map));
 
   /// Create a copy of Vendor
@@ -273,6 +295,7 @@ abstract class _Vendor implements Vendor {
       @JsonKey(name: 'vendor_location') final String vendor_location,
       @JsonKey(name: 'vendor_shop_name') final String vendor_shop_name,
       @JsonKey(name: 'vendor_rating') final int rating,
+      @JsonKey(name: 'vendor_phone_number') final String vendor_phone_number,
       @JsonKey(name: 'type_cost_map')
       final Map<String, dynamic> types_cost_map}) = _$VendorImpl;
 
@@ -293,6 +316,9 @@ abstract class _Vendor implements Vendor {
   @override
   @JsonKey(name: 'vendor_rating')
   int get rating;
+  @override
+  @JsonKey(name: 'vendor_phone_number')
+  String get vendor_phone_number;
   @override
   @JsonKey(name: 'type_cost_map')
   Map<String, dynamic> get types_cost_map;

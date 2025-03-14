@@ -23,6 +23,7 @@ class _VendorRegistrationPageState extends State<VendorRegistrationPage> {
   final TextEditingController vendorNameController = TextEditingController();
   final TextEditingController vendorLocationController = TextEditingController();
   final TextEditingController vendorShopNameController = TextEditingController();
+  final TextEditingController vendorPhoneNumberController = TextEditingController();
   final TextEditingController ratingController = TextEditingController();
 
   final List<String> categories = [
@@ -80,6 +81,7 @@ class _VendorRegistrationPageState extends State<VendorRegistrationPage> {
                         _buildTextField(vendorNameController, 'Vendor Name'),
                         _buildTextField(vendorLocationController, 'Vendor Location'),
                         _buildTextField(vendorShopNameController, 'Enterprise Name'),
+                        _buildTextField(vendorPhoneNumberController, 'Phone No',isNumeric: true),
                         const SizedBox(height: 16),
                         const Text(
                           'Define Cost and then select categories',
@@ -130,9 +132,11 @@ class _VendorRegistrationPageState extends State<VendorRegistrationPage> {
                                     types_cost_map: selectedTypesCost,
                                     vendor_location: vendorLocationController.text,
                                     vendor_name: vendorNameController.text,
-                                    vendor_shop_name: vendorShopNameController.text
+                                    vendor_shop_name: vendorShopNameController.text,
+                                    vendor_phone_number: vendorPhoneNumberController.text,
                                   )
                                 );
+                                Get.toNamed(home_route);
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(content: Text('Please select at least one category and enter cost')),
@@ -167,7 +171,7 @@ class _VendorRegistrationPageState extends State<VendorRegistrationPage> {
           ),
         ),
         validator: (value) {
-          if (value == null || value.isEmpty) {
+          if (value == null || value.isEmpty || (label=='Phone No' && controller.text.length<10)) {
             if(label!='Cost') return 'Please enter $label';
           }
           return null;
