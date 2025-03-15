@@ -1,12 +1,13 @@
+import 'package:eco_earth/Utils/_03_show_toast.dart';
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/controllers/_04_vendor_controller/_01_vendor_controller.dart';
 import 'package:eco_earth/models/_02_vendor_model/vendor.dart';
+import 'package:eco_earth/pages/_08_vendor_registeration_page/_02_contracts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:lottie/lottie.dart';
 
 
 
@@ -43,118 +44,128 @@ class _VendorRegistrationPageState extends State<VendorRegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: get_app_bar('', true),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.blue, Colors.purple],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(13.0),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 8,
+    return FutureBuilder<bool>(
+      future: vendorcontroller.curr_user_is_vendor(),
+      builder: (context,snap) {
+        if(snap.connectionState==ConnectionState.waiting) {
+          showToast('You r already registered!', Colors.blueAccent);
+          return Center(child: Lottie.asset('assets/lottie/ai.json', height: 200,),);
+        }
+        if(snap.data==true) return const VendorContractsPage();
+        return Scaffold(
+          appBar: get_app_bar('', true),
+          body: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.blue, Colors.purple],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: Center(
+              child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text(
-                          'Vendor Registration',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        _buildTextField(vendorNameController, 'Vendor Name'),
-                        _buildTextField(vendorLocationController, 'Vendor Location'),
-                        _buildTextField(vendorShopNameController, 'Enterprise Name'),
-                        _buildTextField(vendorPhoneNumberController, 'Phone No',isNumeric: true),
-                        const SizedBox(height: 16),
-                        const Text(
-                          'Define Cost and then select categories',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                        Column(
-                          children: categories.map((category) {
-                            return Row(
-                              children: [
-                                Checkbox(
-                                  value: typesCostMap[category]!.text.isNotEmpty,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      if (!value!) {
-                                        typesCostMap[category]!.clear();
-                                      }
-                                    });
-                                  },
-                                ),
-                                Expanded(child: Text(category)),
-                                SizedBox(
-                                  width: 100,
-                                  child: _buildTextField(typesCostMap[category]!, 'Cost', isNumeric: true),
-                                ),
-                              ],
-                            );
-                          }).toList(),
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: () async{
-                            if (_formKey.currentState!.validate()) {
-                              Map<String, int> selectedTypesCost = {};
-                              for (var entry in typesCostMap.entries) {
-                                if (entry.value.text.isNotEmpty) {
-                                  selectedTypesCost[entry.key] = int.parse(entry.value.text);
+                  padding: const EdgeInsets.all(13.0),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 8,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Text(
+                              'Vendor Registration',
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            _buildTextField(vendorNameController, 'Vendor Name'),
+                            _buildTextField(vendorLocationController, 'Vendor Location'),
+                            _buildTextField(vendorShopNameController, 'Enterprise Name'),
+                            _buildTextField(vendorPhoneNumberController, 'Phone No',isNumeric: true),
+                            const SizedBox(height: 16),
+                            const Text(
+                              'Define Cost and then select categories',
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            Column(
+                              children: categories.map((category) {
+                                return Row(
+                                  children: [
+                                    Checkbox(
+                                      value: typesCostMap[category]!.text.isNotEmpty,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          if (!value!) {
+                                            typesCostMap[category]!.clear();
+                                          }
+                                        });
+                                      },
+                                    ),
+                                    Expanded(child: Text(category)),
+                                    SizedBox(
+                                      width: 100,
+                                      child: _buildTextField(typesCostMap[category]!, 'Cost', isNumeric: true),
+                                    ),
+                                  ],
+                                );
+                              }).toList(),
+                            ),
+                            const SizedBox(height: 16),
+                            ElevatedButton(
+                              onPressed: () async{
+                                if (_formKey.currentState!.validate()) {
+                                  Map<String, int> selectedTypesCost = {};
+                                  for (var entry in typesCostMap.entries) {
+                                    if (entry.value.text.isNotEmpty) {
+                                      selectedTypesCost[entry.key] = int.parse(entry.value.text);
+                                    }
+                                  }
+                                  if (selectedTypesCost.isNotEmpty) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Vendor Registered Successfully')),
+                                    );
+                                    print(selectedTypesCost);
+                                    await vendorcontroller.register_vendor(
+                                      Vendor(
+                                        firebaseUid: FirebaseAuth.instance.currentUser!.uid,
+                                        rating: 0,
+                                        types_cost_map: selectedTypesCost,
+                                        vendor_location: vendorLocationController.text,
+                                        vendor_name: vendorNameController.text,
+                                        vendor_shop_name: vendorShopNameController.text,
+                                        vendor_phone_number: vendorPhoneNumberController.text,
+                                      )
+                                    );
+                                    Get.toNamed(home_route);
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Please select at least one category and enter cost')),
+                                    );
+                                  }
                                 }
-                              }
-                              if (selectedTypesCost.isNotEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Vendor Registered Successfully')),
-                                );
-                                print(selectedTypesCost);
-                                await vendorcontroller.register_vendor(
-                                  Vendor(
-                                    firebaseUid: FirebaseAuth.instance.currentUser!.uid,
-                                    rating: 0,
-                                    types_cost_map: selectedTypesCost,
-                                    vendor_location: vendorLocationController.text,
-                                    vendor_name: vendorNameController.text,
-                                    vendor_shop_name: vendorShopNameController.text,
-                                    vendor_phone_number: vendorPhoneNumberController.text,
-                                  )
-                                );
-                                Get.toNamed(home_route);
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Please select at least one category and enter cost')),
-                                );
-                              }
-                            }
-                          },
-                          child: const Text('Register'),
+                              },
+                              child: const Text('Register'),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      }
     );
   }
 

@@ -18,8 +18,3 @@ class Vendor with _$Vendor{
 })=_Vendor;
   factory Vendor.fromJson(Map<String, dynamic> json) => _$VendorFromJson(json);
 }
-
-class Contract{
-  final int contracts_vendor_id;
-  Contract({required this.contracts_vendor_id});
-}

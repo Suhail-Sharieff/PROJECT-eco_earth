@@ -8,9 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:lottie/lottie.dart';
 
 class RecyclingCentres extends StatefulWidget {
-  static const route_name=recycling_centres_routes;
+  static const route_name = recycling_centres_routes;
   const RecyclingCentres({super.key});
 
   @override
@@ -18,7 +19,7 @@ class RecyclingCentres extends StatefulWidget {
 }
 
 class _RecyclingCentresState extends State<RecyclingCentres> {
-  final VendorController controller=Get.put(VendorController());
+  final VendorController controller = Get.put(VendorController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,17 +27,20 @@ class _RecyclingCentresState extends State<RecyclingCentres> {
       endDrawer: get_end_drawer(context),
       body: FutureBuilder<PostgrestList>(
         future: controller.get_vendors(),
-        builder: (_,snap){
-          if(snap.connectionState==ConnectionState.waiting) return const Center(child: CircularProgressIndicator(),);
-          
-          List<Map<String,dynamic>>li=snap.data!;
-          
+        builder: (_, snap) {
+          if (snap.connectionState == ConnectionState.waiting) {
+            return Center(child: Lottie.asset('assets/lottie/ai.json', height: 200));
+          }
+
+          List<Map<String, dynamic>> li = snap.data!;
+
           return ListView.builder(
             itemCount: li.length,
-            itemBuilder: (_,idx){
-              Vendor v=Vendor.fromJson(li[idx]);
+            itemBuilder: (_, idx) {
+              Vendor v = Vendor.fromJson(li[idx]);
               return ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                   side: BorderSide(color: Colors.grey.shade300),
@@ -47,7 +51,10 @@ class _RecyclingCentresState extends State<RecyclingCentres> {
                 ),
                 title: Text(
                   v.vendor_shop_name,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87),
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87),
                 ),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,36 +75,40 @@ class _RecyclingCentresState extends State<RecyclingCentres> {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: v.types_cost_map.keys.map((key) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: Colors.green.shade100,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              "#$key",
-                              style: TextStyle(color: Colors.green.shade800, fontWeight: FontWeight.bold, fontSize: 10),
-                            ),
-                          ),
-                        )).toList(),
+                        children: v.types_cost_map.keys
+                            .map((key) => Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 4),
+                                    decoration: BoxDecoration(
+                                      color: Colors.green.shade100,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Text(
+                                      "#$key",
+                                      style: TextStyle(
+                                          color: Colors.green.shade800,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10),
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
                       ),
                     ),
-
-
                   ],
                 ),
-                trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+                trailing: const Icon(Icons.arrow_forward_ios,
+                    size: 16, color: Colors.grey),
                 onTap: () {
                   // Define navigation or actions here
-                  Get.to(()=>ViewVendorDetails(v: v));
+                  Get.to(() => ViewVendorDetails(v: v));
                 },
               );
-
             },
           );
-          
         },
       ),
     );

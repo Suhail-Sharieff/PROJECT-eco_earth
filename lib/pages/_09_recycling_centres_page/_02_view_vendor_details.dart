@@ -1,5 +1,9 @@
 import 'package:eco_earth/constants/_04_appbar.dart';
+import 'package:eco_earth/controllers/_05_contract_controller/_01_contract_controller.dart';
+import 'package:eco_earth/pages/_09_recycling_centres_page/_03_order_contract.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../models/_02_vendor_model/vendor.dart';
 
 class ViewVendorDetails extends StatefulWidget {
@@ -13,6 +17,7 @@ class ViewVendorDetails extends StatefulWidget {
 class _ViewVendorDetailsState extends State<ViewVendorDetails> {
   late final Vendor vendor;
   bool isStarred = false; // Track if vendor is starred
+
 
   @override
   void initState() {
@@ -168,8 +173,9 @@ class _ViewVendorDetailsState extends State<ViewVendorDetails> {
                         // Request Service Button
                         const SizedBox(height: 40,),
                         ElevatedButton.icon(
-                          onPressed: () {
+                          onPressed: () async{
                             // Handle Request Service Action
+                            Get.to(()=>OrderContractPage(vendor: vendor));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green.shade700,
