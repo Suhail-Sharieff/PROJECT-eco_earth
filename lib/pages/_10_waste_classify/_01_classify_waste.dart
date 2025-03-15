@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:lottie/lottie.dart';
@@ -109,10 +110,7 @@ class _ClassifyWastePageState extends State<ClassifyWastePage> {
                 child: loading
                     ? Lottie.asset('assets/lottie/ai.json', height: 200)
                     : SingleChildScrollView(
-                  child: Text(
-                    result,
-                    style: const TextStyle(fontSize: 16),
-                  ),
+                  child: MarkdownBody(data: result,),
                 ),
               ),
             ),

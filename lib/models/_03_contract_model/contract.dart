@@ -8,6 +8,7 @@ part 'contract.g.dart';
 class Contract with _$Contract{
   @JsonSerializable(explicitToJson: true)
   factory Contract({
+    @JsonKey(name: 'id')@Default(-1) int id,
     @JsonKey(name: 'created_at') DateTime? created_at,
     @Default('no-from-id') @JsonKey(name: 'from_id') String from_id,
     @Default('no-to-id') @JsonKey(name: 'to_id') String to_id,

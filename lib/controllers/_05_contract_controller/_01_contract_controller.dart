@@ -11,33 +11,47 @@ class ContractController extends GetxController {
   final instance = Supabase.instance.client;
   final user = FirebaseAuth.instance.currentUser!;
 
-  Future<void> place_contract_to(Vendor v,Map<String,dynamic>item_number_map) async {
-    Contract newContr = Contract(
-        contract_status: 'PENDING',
-        from_id: user.uid,
-        customer_name: user.displayName!,
-        to_id: v.firebaseUid,
-        item_number_map:item_number_map,
-      created_at: DateTime.timestamp()
-    );
-    await instance.from('contracts').insert(newContr);
+  Future<void> place_contract_to(
+      Vendor v, Map<String, dynamic> item_number_map) async {
+    await instance.from('contracts').insert({
+      'contract_status': 'PENDING',
+      'from_id': user.uid,
+      'customer_name': user.displayName!,
+      'to_id': v.firebaseUid,
+      'item_number_map': item_number_map,
+    });
   }
 
-  Future<List<Contract>> getContracts() async {
+  Stream<PostgrestList> getContracts() {
     try {
-      final res = await instance
-          .from('contracts')
-          .select('*')
-          .eq('to_id', user.uid);
-
-      // Assuming `res` is a List<dynamic> where each element is a Map<String, dynamic>
-      return (res as List)
-          .map((e) => Contract.fromJson(e as Map<String, dynamic>))
-          .toList();
+      final res = instance.from('contracts').stream(
+        primaryKey: ['*'],
+      ).eq('to_id', user.uid);
+      return res;
     } catch (e) {
       log(e.toString());
+      return Stream.error(e);
+    }
+  }
+
+  Future<void> delete_completed_contracts() async {
+    try {
+      await instance
+          .from('contracts')
+          .delete()
+          .eq('contract_status', 'COMPLETED');
+    } catch (e) {
       throw Exception(e.toString());
     }
   }
 
+  Future<void> mark_as_completed(Contract c) async {
+    try {
+      await instance.from('contracts').update({
+        'contract_status': 'COMPLETED',
+      }).eq('id', c.id);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

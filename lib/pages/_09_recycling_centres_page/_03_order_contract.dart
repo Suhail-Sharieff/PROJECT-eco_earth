@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/models/_02_vendor_model/vendor.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class OrderContractPage extends StatefulWidget {
   const OrderContractPage({super.key, required this.vendor});
@@ -20,7 +19,7 @@ class _OrderContractPageState extends State<OrderContractPage> {
   late final Map<String, dynamic> typeCostMap;
   final Map<String, TextEditingController> controllers = {};
 
-  final ContractController contractController=Get.put(ContractController());
+  final ContractController contractController = Get.put(ContractController());
 
   @override
   void initState() {
@@ -46,12 +45,12 @@ class _OrderContractPageState extends State<OrderContractPage> {
     Map<String, int> results = {};
     int totalCost = 0;
 
-    // Calculate cost for each type and overall total
-    controllers.forEach((key, controller) {
+    // Calculate cost for each type and overall total using the original keys.
+    controllers.forEach((originalKey, controller) {
       int weight = int.tryParse(controller.text) ?? 0;
-      int costPerUnit = typeCostMap[key] as int;
+      int costPerUnit = typeCostMap[originalKey] as int;
       int calculatedValue = weight * costPerUnit;
-      results[key] = calculatedValue;
+      results[originalKey] = calculatedValue;
       totalCost += calculatedValue;
     });
 
@@ -64,12 +63,12 @@ class _OrderContractPageState extends State<OrderContractPage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: [
-                // Display report for each category
-                for (String key in typeCostMap.keys)
+                // Display report for each category using the original keys.
+                for (String originalKey in typeCostMap.keys)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: Text(
-                      '$key: ${controllers[key]!.text} X ${typeCostMap[key]} = ${results[key]}',
+                      '$originalKey: ${controllers[originalKey]!.text} X ${typeCostMap[originalKey]} = ${results[originalKey]}',
                       style: const TextStyle(fontSize: 12),
                     ),
                   ),
@@ -83,13 +82,12 @@ class _OrderContractPageState extends State<OrderContractPage> {
           ),
           actions: [
             TextButton(
-              onPressed: () async{
+              onPressed: () async {
                 // Place Order action (add your logic here)
                 Navigator.of(context).pop();
-                // print('Order placed: $results');
                 await contractController.place_contract_to(vendor, results);
                 showToast('You will be soon notified by vendor!', Colors.green);
-                Get.to(home_route);
+                Get.toNamed(home_route);
               },
               child: const Text('Place Order'),
             ),
@@ -119,19 +117,22 @@ class _OrderContractPageState extends State<OrderContractPage> {
               child: ListView.builder(
                 itemCount: typeCostMap.keys.length,
                 itemBuilder: (context, index) {
-                  String key = "${typeCostMap.keys.elementAt(index)}: ${typeCostMap.values.elementAt(index)}/kg";
+                  // Use the original key to fetch the controller.
+                  String originalKey = typeCostMap.keys.elementAt(index);
+                  // Create a display string that includes the cost per kg.
+                  String displayText = "$originalKey: ${typeCostMap[originalKey]}/kg";
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          key,
+                          displayText,
                           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 5),
                         TextField(
-                          controller: controllers[key],
+                          controller: controllers[originalKey],
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             labelText: 'Enter weight',
