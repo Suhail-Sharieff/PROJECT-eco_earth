@@ -37,4 +37,16 @@ class VendorController extends GetxController {
     }
     return false;
   }
+
+  Future<void>star_vendor(Vendor v)async{
+    try{
+      final res=await instance.from('vendors').select('vendor_rating').eq('firebase_uid', v.firebaseUid);
+      print(res);
+      await instance.from('vendors').update({
+        'vendor_rating':res.first.values.elementAt(0)+1
+      }).eq('firebase_uid', v.firebaseUid);
+    }catch(e){
+      log(e.toString());
+    }
+  }
 }

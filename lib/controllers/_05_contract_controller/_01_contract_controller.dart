@@ -54,4 +54,7 @@ class ContractController extends GetxController {
       throw Exception(e.toString());
     }
   }
+
+
+
 }

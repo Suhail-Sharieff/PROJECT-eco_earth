@@ -23,9 +23,10 @@ class _HomePageState extends State<HomePage> {
   final List<Map<String, dynamic>> features = [
     {
       'icon': FontAwesomeIcons.recycle,
-      'label': 'Recycle',
+      'label': 'Reusables',
       'onTap': () {
         // TODO: Navigate or perform action for Recycle
+        Get.toNamed(reusables_page);
       },
     },
     {

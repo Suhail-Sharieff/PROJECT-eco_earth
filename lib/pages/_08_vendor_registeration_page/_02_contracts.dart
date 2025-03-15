@@ -152,6 +152,12 @@ class _VendorContractsPageState extends State<VendorContractsPage> {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Add item to reusable', onPressed: () {
+
+      },
+
+      ),
     );
   }
 }

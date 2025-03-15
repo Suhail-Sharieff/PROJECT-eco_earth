@@ -1,4 +1,5 @@
 import 'package:eco_earth/constants/_04_appbar.dart';
+import 'package:eco_earth/controllers/_04_vendor_controller/_01_vendor_controller.dart';
 import 'package:eco_earth/controllers/_05_contract_controller/_01_contract_controller.dart';
 import 'package:eco_earth/pages/_09_recycling_centres_page/_03_order_contract.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class _ViewVendorDetailsState extends State<ViewVendorDetails> {
   late final Vendor vendor;
   bool isStarred = false; // Track if vendor is starred
 
-
+  final VendorController vc=Get.put(VendorController());
   @override
   void initState() {
     vendor = widget.v;
@@ -149,10 +150,11 @@ class _ViewVendorDetailsState extends State<ViewVendorDetails> {
                       children: [
                         // Star Vendor Button
                         ElevatedButton.icon(
-                          onPressed: () {
+                          onPressed: () async{
                             setState(() {
                               isStarred = !isStarred;
                             });
+                            await vc.star_vendor(vendor);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: isStarred ? Colors.amber : Colors.grey.shade400,
