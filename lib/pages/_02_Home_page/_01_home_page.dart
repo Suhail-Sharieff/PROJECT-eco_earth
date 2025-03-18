@@ -3,6 +3,7 @@ import 'package:eco_earth/constants/_05_end_drawer.dart';
 import 'package:eco_earth/pages/_07_complaints_page/_01_complaints_page.dart';
 import 'package:eco_earth/pages/_08_vendor_registeration_page/_01_vendor_registeration.dart';
 import 'package:eco_earth/pages/_09_recycling_centres_page/_01_recycling_centres_page.dart';
+import 'package:eco_earth/pages/_11_reusables_page/_02_preview_reusables.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       'label': 'Reusables',
       'onTap': () {
         // TODO: Navigate or perform action for Recycle
-        Get.toNamed(reusables_page);
+        Get.toNamed(ReusablesPage.route_name);
       },
     },
     {

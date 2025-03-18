@@ -35,8 +35,8 @@ const edit_user_ph_no='/edit_user_ph_no/';
 const complaint_route='/complaints/';
 const vendor_registration_route='/vendor_registration_page/';
 const recycling_centres_routes='/recycling_centres_page/';
-const reusables_adding_page='/add_reusable/';
-const reusables_page='/reusables/';
+const reusables_adding_page_route='/add_reusable/';
+const reusables_page_route='/reusables/';
 
 
 
@@ -56,6 +56,6 @@ final Map<String, WidgetBuilder> routes = {
   ComplaintsPage.route_name:(_)=>const ComplaintsPage(),
   VendorRegistrationPage.route_name:(_)=>const VendorRegistrationPage(),
   RecyclingCentres.route_name:(_)=>const RecyclingCentres(),
-  AddResusablesPage.route_name:(_)=>const AddResusablesPage(),
+  AddReusablesPage.route_name:(_)=> AddReusablesPage(),
   ReusablesPage.route_name:(_)=>const ReusablesPage(),
 };

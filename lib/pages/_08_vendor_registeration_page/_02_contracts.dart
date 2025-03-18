@@ -2,6 +2,7 @@ import 'package:eco_earth/Utils/_03_show_toast.dart';
 import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/controllers/_05_contract_controller/_01_contract_controller.dart';
 import 'package:eco_earth/models/_03_contract_model/contract.dart';
+import 'package:eco_earth/pages/_11_reusables_page/_01_add_reusbale.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -154,9 +155,8 @@ class _VendorContractsPageState extends State<VendorContractsPage> {
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add item to reusable', onPressed: () {
-
+          Get.toNamed(AddReusablesPage.route_name);
       },
-
       ),
     );
   }
