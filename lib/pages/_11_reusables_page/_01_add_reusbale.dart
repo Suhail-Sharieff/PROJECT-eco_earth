@@ -1,32 +1,32 @@
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/controllers/_06_reusables_controller/_01_resuables_controller.dart';
+import 'package:eco_earth/pages/_02_Home_page/_01_home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
+
+import '../../models/_05_item_condition/item_condition.dart';
 
 class AddReusablesPage extends StatefulWidget {
   static const route_name = reusables_adding_page_route;
+
   @override
   _AddReusablesPageState createState() => _AddReusablesPageState();
 }
 
 class _AddReusablesPageState extends State<AddReusablesPage> {
   final _formKey = GlobalKey<FormState>();
-  final owner=FirebaseAuth.instance.currentUser!.displayName;
-  final controller=Get.put(ReusableController());
+  final owner = FirebaseAuth.instance.currentUser!.displayName;
+  final controller = Get.put(ReusableController());
 
+  final TextEditingController _photoUrlController = TextEditingController();
+  final TextEditingController _costController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  String _purchasedDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
+  bool _isWorking = true;
+  bool _needsRepairs = false;
 
-  final TextEditingController _photoUrlController =
-  TextEditingController();
-  final TextEditingController _costController =
-  TextEditingController();
-  final TextEditingController _titleController =
-  TextEditingController();
-@override
-  void initState() {
-    super.initState();
-  }
   @override
   void dispose() {
     _photoUrlController.dispose();
@@ -35,34 +35,59 @@ class _AddReusablesPageState extends State<AddReusablesPage> {
     super.dispose();
   }
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null) {
+      setState(() {
+        _purchasedDate = DateFormat('dd/MM/yyyy').format(picked);
+      });
+    }
+  }
 
-
-  Future<void> _submitForm() async{
+  Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
-      // Here you could create an instance of your Reusable model.
+      final itemCondition = ItemCondition(
+        purchased_date: _purchasedDate,
+        is_working: _isWorking,
+        needs_repairs: _needsRepairs,
+      );
+
       print('Photo URL: ${_photoUrlController.text}');
       print('Cost: ${_costController.text}');
       print('Title: ${_titleController.text}');
-      await controller.addReusable(_photoUrlController.text, int.tryParse(_costController.text)!, _titleController.text);
+      print('Purchased Date: $_purchasedDate');
+      print('Is Working: $_isWorking');
+      print('Needs Repairs: $_needsRepairs');
+
+      await controller.addReusable(
+        _photoUrlController.text,
+        int.tryParse(_costController.text)!,
+        _titleController.text,
+        itemCondition.toJson(), // Convert to JSON before passing
+      );
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Form submitted successfully!')),
       );
+      Get.toNamed(HomePage.route_name);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Reusable Form'),
-      ),
+      appBar: AppBar(title: const Text('Reusable Form')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: ListView(
             children: [
-              // Created At Field with Validator and Date Picker
               // Owner Field
               TextFormField(
                 enabled: false,
@@ -73,16 +98,14 @@ class _AddReusablesPageState extends State<AddReusablesPage> {
                 ),
               ),
               const SizedBox(height: 16),
-              // Buyer Field
 
-              const SizedBox(height: 16),
               // Photo URL Field
               TextFormField(
                 controller: _photoUrlController,
                 decoration: const InputDecoration(
                   labelText: 'Photo URL',
                   border: OutlineInputBorder(),
-                  hintText: 'Please provide product photo url'
+                  hintText: 'Please provide product photo URL',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -92,11 +115,12 @@ class _AddReusablesPageState extends State<AddReusablesPage> {
                 },
               ),
               const SizedBox(height: 16),
+
               // Cost Field
               TextFormField(
                 controller: _costController,
                 decoration: const InputDecoration(
-                  labelText: 'Selling price',
+                  labelText: 'Selling Price',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
@@ -111,11 +135,12 @@ class _AddReusablesPageState extends State<AddReusablesPage> {
                 },
               ),
               const SizedBox(height: 16),
+
               // Title Field
               TextFormField(
                 controller: _titleController,
                 decoration: const InputDecoration(
-                  labelText: 'Product description',
+                  labelText: 'Product Description',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
@@ -126,7 +151,54 @@ class _AddReusablesPageState extends State<AddReusablesPage> {
                 },
               ),
               const SizedBox(height: 16),
-              // Status Field
+
+              // Purchased Date Picker
+              ListTile(
+                title: Text("Purchased Date: $_purchasedDate"),
+                trailing: const Icon(Icons.calendar_today, color: Colors.blue),
+                onTap: () => _selectDate(context),
+              ),
+              const SizedBox(height: 16),
+
+              // Is Working Checkbox
+              CheckboxListTile(
+                title: const Text("Is the item working?"),
+                value: _isWorking,
+                onChanged: (bool? value) {
+                  setState(() {
+                    _isWorking = value!;
+                  });
+                },
+              ),
+              const SizedBox(height: 16),
+
+              // Needs Repairs Dropdown
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Needs Repairs?", style: TextStyle(fontSize: 16)),
+                  DropdownButton<bool>(
+                    value: _needsRepairs,
+                    items: const [
+                      DropdownMenuItem(
+                        value: false,
+                        child: Text("No"),
+                      ),
+                      DropdownMenuItem(
+                        value: true,
+                        child: Text("Yes"),
+                      ),
+                    ],
+                    onChanged: (value) {
+                      setState(() {
+                        _needsRepairs = value!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+
               // Submit Button
               ElevatedButton(
                 onPressed: _submitForm,

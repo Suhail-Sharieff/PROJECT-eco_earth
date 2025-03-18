@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:eco_earth/models/_04_reusables/reusable.dart';
+import 'package:eco_earth/models/_05_item_condition/item_condition.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -13,13 +14,14 @@ class ReusableController extends GetxController{
   final fid=FirebaseAuth.instance.currentUser;
   final instance=Supabase.instance.client;
 
-  Future<void> addReusable(String photoUrl,int selling_price,String title)async{
+  Future<void> addReusable(String photoUrl,int selling_price,String title, Map<String, dynamic> json)async{
     try{
       final Reusable item=Reusable(
         title: title,
         owner: fid!.uid,
         cost: selling_price,
         photo_url: photoUrl,
+        condition: ItemCondition.fromJson(json),
       );
       await instance.from('reusables').insert(
         item

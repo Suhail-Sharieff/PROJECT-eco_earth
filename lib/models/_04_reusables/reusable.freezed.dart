@@ -32,6 +32,8 @@ mixin _$Reusable {
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
   int get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'item_condition_map')
+  ItemCondition? get condition => throw _privateConstructorUsedError;
 
   /// Serializes this Reusable to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,7 +56,10 @@ abstract class $ReusableCopyWith<$Res> {
       @JsonKey(name: 'photo_url') String photo_url,
       @JsonKey(name: 'cost') int cost,
       @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'status') int status});
+      @JsonKey(name: 'status') int status,
+      @JsonKey(name: 'item_condition_map') ItemCondition? condition});
+
+  $ItemConditionCopyWith<$Res>? get condition;
 }
 
 /// @nodoc
@@ -78,6 +83,7 @@ class _$ReusableCopyWithImpl<$Res, $Val extends Reusable>
     Object? cost = null,
     Object? title = null,
     Object? status = null,
+    Object? condition = freezed,
   }) {
     return _then(_value.copyWith(
       owner: null == owner
@@ -104,7 +110,25 @@ class _$ReusableCopyWithImpl<$Res, $Val extends Reusable>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int,
+      condition: freezed == condition
+          ? _value.condition
+          : condition // ignore: cast_nullable_to_non_nullable
+              as ItemCondition?,
     ) as $Val);
+  }
+
+  /// Create a copy of Reusable
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ItemConditionCopyWith<$Res>? get condition {
+    if (_value.condition == null) {
+      return null;
+    }
+
+    return $ItemConditionCopyWith<$Res>(_value.condition!, (value) {
+      return _then(_value.copyWith(condition: value) as $Val);
+    });
   }
 }
 
@@ -122,7 +146,11 @@ abstract class _$$ReusableImplCopyWith<$Res>
       @JsonKey(name: 'photo_url') String photo_url,
       @JsonKey(name: 'cost') int cost,
       @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'status') int status});
+      @JsonKey(name: 'status') int status,
+      @JsonKey(name: 'item_condition_map') ItemCondition? condition});
+
+  @override
+  $ItemConditionCopyWith<$Res>? get condition;
 }
 
 /// @nodoc
@@ -144,6 +172,7 @@ class __$$ReusableImplCopyWithImpl<$Res>
     Object? cost = null,
     Object? title = null,
     Object? status = null,
+    Object? condition = freezed,
   }) {
     return _then(_$ReusableImpl(
       owner: null == owner
@@ -170,6 +199,10 @@ class __$$ReusableImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int,
+      condition: freezed == condition
+          ? _value.condition
+          : condition // ignore: cast_nullable_to_non_nullable
+              as ItemCondition?,
     ));
   }
 }
@@ -181,10 +214,12 @@ class _$ReusableImpl implements _Reusable {
   _$ReusableImpl(
       {@JsonKey(name: 'owner') this.owner = 'no_owner',
       @JsonKey(name: 'buyer') this.buyer = 'no_buyer',
-      @JsonKey(name: 'photo_url') this.photo_url = 'photo_url',
+      @JsonKey(name: 'photo_url') this.photo_url =
+          'https://images.pexels.com/photos/211492/pexels-photo-211492.jpeg?cs=srgb&dl=pexels-omkar-patyane-211492.jpg&fm=jpg',
       @JsonKey(name: 'cost') this.cost = 0,
       @JsonKey(name: 'title') this.title = 'title',
-      @JsonKey(name: 'status') this.status = 0});
+      @JsonKey(name: 'status') this.status = 0,
+      @JsonKey(name: 'item_condition_map') this.condition});
 
   factory _$ReusableImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReusableImplFromJson(json);
@@ -207,10 +242,13 @@ class _$ReusableImpl implements _Reusable {
   @override
   @JsonKey(name: 'status')
   final int status;
+  @override
+  @JsonKey(name: 'item_condition_map')
+  final ItemCondition? condition;
 
   @override
   String toString() {
-    return 'Reusable(owner: $owner, buyer: $buyer, photo_url: $photo_url, cost: $cost, title: $title, status: $status)';
+    return 'Reusable(owner: $owner, buyer: $buyer, photo_url: $photo_url, cost: $cost, title: $title, status: $status, condition: $condition)';
   }
 
   @override
@@ -224,13 +262,15 @@ class _$ReusableImpl implements _Reusable {
                 other.photo_url == photo_url) &&
             (identical(other.cost, cost) || other.cost == cost) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.condition, condition) ||
+                other.condition == condition));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, owner, buyer, photo_url, cost, title, status);
+  int get hashCode => Object.hash(
+      runtimeType, owner, buyer, photo_url, cost, title, status, condition);
 
   /// Create a copy of Reusable
   /// with the given fields replaced by the non-null parameter values.
@@ -255,7 +295,9 @@ abstract class _Reusable implements Reusable {
       @JsonKey(name: 'photo_url') final String photo_url,
       @JsonKey(name: 'cost') final int cost,
       @JsonKey(name: 'title') final String title,
-      @JsonKey(name: 'status') final int status}) = _$ReusableImpl;
+      @JsonKey(name: 'status') final int status,
+      @JsonKey(name: 'item_condition_map')
+      final ItemCondition? condition}) = _$ReusableImpl;
 
   factory _Reusable.fromJson(Map<String, dynamic> json) =
       _$ReusableImpl.fromJson;
@@ -278,6 +320,9 @@ abstract class _Reusable implements Reusable {
   @override
   @JsonKey(name: 'status')
   int get status;
+  @override
+  @JsonKey(name: 'item_condition_map')
+  ItemCondition? get condition;
 
   /// Create a copy of Reusable
   /// with the given fields replaced by the non-null parameter values.

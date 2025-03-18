@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../_05_item_condition/item_condition.dart';
+
 
 part 'reusable.freezed.dart';
 part 'reusable.g.dart';
@@ -14,6 +16,7 @@ class Reusable with _$Reusable{
     @Default(0) @JsonKey(name: 'cost') int cost,
     @Default('title') @JsonKey(name: 'title') String title,
     @Default(0) @JsonKey(name: 'status') int status,
+    @JsonKey(name: 'item_condition_map')ItemCondition? condition,
   })=_Reusable;
   factory Reusable.fromJson(Map<String, dynamic> json) => _$ReusableFromJson(json);
 }

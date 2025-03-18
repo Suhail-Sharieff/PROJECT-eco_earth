@@ -51,6 +51,7 @@ dependencies:
   flutter_markdown: ^0.7.6+2
   flutter_gemini: ^3.0.0
   lottie: ^3.2.0
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:

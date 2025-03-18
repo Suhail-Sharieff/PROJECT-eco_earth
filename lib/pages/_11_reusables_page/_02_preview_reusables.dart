@@ -3,6 +3,7 @@ import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/controllers/_06_reusables_controller/_01_resuables_controller.dart';
 import 'package:eco_earth/models/_04_reusables/reusable.dart';
 import 'package:eco_earth/pages/_11_reusables_page/_01_add_reusbale.dart';
+import 'package:eco_earth/pages/_11_reusables_page/_03_resuable_details.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -19,17 +20,7 @@ class ReusablesPage extends StatefulWidget {
 class _ReusablesPageState extends State<ReusablesPage> {
   final controller = Get.put(ReusableController());
 
-  void _buyNow(Reusable item) {
-    // Implement purchase logic here
-    print("Buying item: ${item.title}");
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("You have purchased '${item.title}'!"),
-        duration: const Duration(seconds: 2),
-      ),
-    );
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +30,9 @@ class _ReusablesPageState extends State<ReusablesPage> {
         onPressed: () {
           Get.toNamed(AddReusablesPage.route_name);
         },
-        tooltip: 'Contribute',
+        tooltip: 'Sell item',
         backgroundColor: Colors.blueAccent,
-        child: const FaIcon(FontAwesomeIcons.plus, color: Colors.white),
+        child: const FaIcon(FontAwesomeIcons.circleDollarToSlot, color: Colors.white),
       ),
       body: FutureBuilder(
         future: controller.get_resuables_list(),
@@ -162,7 +153,10 @@ class _ReusablesPageState extends State<ReusablesPage> {
                 // "Buy Now" Button (only if item is in stock)
                 if (item.status == 0)
                   ElevatedButton(
-                    onPressed: () => _buyNow(item),
+                    onPressed: (){
+                      // print(item);
+                      Get.to(()=>ReusableDetails(item: item));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
