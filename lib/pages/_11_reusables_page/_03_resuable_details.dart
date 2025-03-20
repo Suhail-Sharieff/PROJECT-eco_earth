@@ -1,5 +1,10 @@
+import 'package:eco_earth/controllers/_06_reusables_controller/_01_resuables_controller.dart';
 import 'package:eco_earth/models/_04_reusables/reusable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../models/_05_item_condition/item_condition.dart';
 
@@ -14,6 +19,7 @@ class ReusableDetails extends StatefulWidget {
 class _ReusableDetailsState extends State<ReusableDetails> {
   late final Reusable item;
   late final ItemCondition? condition; // Item condition data
+  final controller = Get.put(ReusableController());
 
   @override
   void initState() {
@@ -22,20 +28,21 @@ class _ReusableDetailsState extends State<ReusableDetails> {
     super.initState();
   }
 
-  void _buyNow() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("You have purchased '${item.title}'!"),
-        duration: const Duration(seconds: 2),
-      ),
-    );
+  Future<void> _buyNow() async {
+    await controller.buy_reusable(item, FirebaseAuth.instance.currentUser!.uid);
+    Get.showSnackbar(const GetSnackBar(
+      messageText: Text('Order placed , check your dashboard to track!'),
+      icon: Icon(Icons.done_outline_sharp),
+      backgroundColor: Colors.greenAccent,
+      duration: Duration(seconds: 2),snackPosition: SnackPosition.TOP,
+      margin: EdgeInsets.symmetric(vertical: 12),
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Item Details'), centerTitle: true),
-
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -45,7 +52,9 @@ class _ReusableDetailsState extends State<ReusableDetails> {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.network(
-                item.photo_url.isNotEmpty ? item.photo_url : _getPlaceholderImage(),
+                item.photo_url.isNotEmpty
+                    ? item.photo_url
+                    : _getPlaceholderImage(),
                 height: 220,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -71,7 +80,8 @@ class _ReusableDetailsState extends State<ReusableDetails> {
             // Details Card
             Card(
               elevation: 4,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -79,9 +89,11 @@ class _ReusableDetailsState extends State<ReusableDetails> {
                   children: [
                     _buildDetailRow(Icons.person, "Owner ID", item.owner),
                     const Divider(),
-                    _buildDetailRow(Icons.account_circle, "Description", item.title),
+                    _buildDetailRow(
+                        Icons.account_circle, "Description", item.title),
                     const Divider(),
-                    _buildDetailRow(Icons.attach_money, "Cost", "₹${item.cost}"),
+                    _buildDetailRow(
+                        Icons.attach_money, "Cost", "₹${item.cost}"),
                     const Divider(),
                     _buildStatusTag(item.status),
                     const Divider(),

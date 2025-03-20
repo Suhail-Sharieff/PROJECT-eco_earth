@@ -49,7 +49,7 @@ class ContractController extends GetxController {
     try {
       await instance.from('contracts').update({
         'contract_status': 'COMPLETED',
-      }).eq('id', c.id);
+      }).eq('id', c.id!);
     } catch (e) {
       throw Exception(e.toString());
     }

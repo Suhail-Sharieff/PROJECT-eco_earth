@@ -11,6 +11,7 @@ import 'package:eco_earth/pages/_08_vendor_registeration_page/_01_vendor_registe
 import 'package:eco_earth/pages/_09_recycling_centres_page/_01_recycling_centres_page.dart';
 import 'package:eco_earth/pages/_11_reusables_page/_01_add_reusbale.dart';
 import 'package:eco_earth/pages/_11_reusables_page/_02_preview_reusables.dart';
+import 'package:eco_earth/pages/_12_Dashboard/_01_dashboard.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/_01_auth_pages/_02_sign_up.dart';
@@ -37,6 +38,7 @@ const vendor_registration_route='/vendor_registration_page/';
 const recycling_centres_routes='/recycling_centres_page/';
 const reusables_adding_page_route='/add_reusable/';
 const reusables_page_route='/reusables/';
+const dashboard_route='/dashboard/';
 
 
 
@@ -58,4 +60,5 @@ final Map<String, WidgetBuilder> routes = {
   RecyclingCentres.route_name:(_)=>const RecyclingCentres(),
   AddReusablesPage.route_name:(_)=> AddReusablesPage(),
   ReusablesPage.route_name:(_)=>const ReusablesPage(),
+  DashBoardPage.route_name:(_)=>const DashBoardPage(),
 };

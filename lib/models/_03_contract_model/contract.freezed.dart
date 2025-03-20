@@ -20,8 +20,8 @@ Contract _$ContractFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Contract {
-  @JsonKey(name: 'id')
-  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id', includeIfNull: false)
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime? get created_at => throw _privateConstructorUsedError;
   @JsonKey(name: 'from_id')
@@ -52,7 +52,7 @@ abstract class $ContractCopyWith<$Res> {
       _$ContractCopyWithImpl<$Res, Contract>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int id,
+      {@JsonKey(name: 'id', includeIfNull: false) int? id,
       @JsonKey(name: 'created_at') DateTime? created_at,
       @JsonKey(name: 'from_id') String from_id,
       @JsonKey(name: 'to_id') String to_id,
@@ -76,7 +76,7 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? created_at = freezed,
     Object? from_id = null,
     Object? to_id = null,
@@ -85,10 +85,10 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     Object? item_number_map = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ abstract class _$$ContractImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int id,
+      {@JsonKey(name: 'id', includeIfNull: false) int? id,
       @JsonKey(name: 'created_at') DateTime? created_at,
       @JsonKey(name: 'from_id') String from_id,
       @JsonKey(name: 'to_id') String to_id,
@@ -148,7 +148,7 @@ class __$$ContractImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? created_at = freezed,
     Object? from_id = null,
     Object? to_id = null,
@@ -157,10 +157,10 @@ class __$$ContractImplCopyWithImpl<$Res>
     Object? item_number_map = null,
   }) {
     return _then(_$ContractImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -194,7 +194,7 @@ class __$$ContractImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$ContractImpl implements _Contract {
   _$ContractImpl(
-      {@JsonKey(name: 'id') this.id = -1,
+      {@JsonKey(name: 'id', includeIfNull: false) this.id,
       @JsonKey(name: 'created_at') this.created_at,
       @JsonKey(name: 'from_id') this.from_id = 'no-from-id',
       @JsonKey(name: 'to_id') this.to_id = 'no-to-id',
@@ -208,8 +208,8 @@ class _$ContractImpl implements _Contract {
       _$$ContractImplFromJson(json);
 
   @override
-  @JsonKey(name: 'id')
-  final int id;
+  @JsonKey(name: 'id', includeIfNull: false)
+  final int? id;
   @override
   @JsonKey(name: 'created_at')
   final DateTime? created_at;
@@ -287,7 +287,7 @@ class _$ContractImpl implements _Contract {
 
 abstract class _Contract implements Contract {
   factory _Contract(
-      {@JsonKey(name: 'id') final int id,
+      {@JsonKey(name: 'id', includeIfNull: false) final int? id,
       @JsonKey(name: 'created_at') final DateTime? created_at,
       @JsonKey(name: 'from_id') final String from_id,
       @JsonKey(name: 'to_id') final String to_id,
@@ -300,8 +300,8 @@ abstract class _Contract implements Contract {
       _$ContractImpl.fromJson;
 
   @override
-  @JsonKey(name: 'id')
-  int get id;
+  @JsonKey(name: 'id', includeIfNull: false)
+  int? get id;
   @override
   @JsonKey(name: 'created_at')
   DateTime? get created_at;

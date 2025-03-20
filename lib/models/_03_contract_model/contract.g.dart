@@ -8,7 +8,7 @@ part of 'contract.dart';
 
 _$ContractImpl _$$ContractImplFromJson(Map<String, dynamic> json) =>
     _$ContractImpl(
-      id: (json['id'] as num?)?.toInt() ?? -1,
+      id: (json['id'] as num?)?.toInt(),
       created_at: json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String),
@@ -22,7 +22,7 @@ _$ContractImpl _$$ContractImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ContractImplToJson(_$ContractImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      if (instance.id case final value?) 'id': value,
       'created_at': instance.created_at?.toIso8601String(),
       'from_id': instance.from_id,
       'to_id': instance.to_id,

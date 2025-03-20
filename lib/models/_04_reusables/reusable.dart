@@ -10,6 +10,7 @@ part 'reusable.g.dart';
 class Reusable with _$Reusable{
   @JsonSerializable(explicitToJson: true)
   factory Reusable({
+    @JsonKey(name: 'id', includeIfNull: false) int? id,
     @Default('no_owner') @JsonKey(name: 'owner') String owner,
     @Default('no_buyer') @JsonKey(name: 'buyer') String buyer,
     @Default('https://images.pexels.com/photos/211492/pexels-photo-211492.jpeg?cs=srgb&dl=pexels-omkar-patyane-211492.jpg&fm=jpg') @JsonKey(name: 'photo_url') String photo_url,

@@ -8,6 +8,7 @@ part of 'reusable.dart';
 
 _$ReusableImpl _$$ReusableImplFromJson(Map<String, dynamic> json) =>
     _$ReusableImpl(
+      id: (json['id'] as num?)?.toInt(),
       owner: json['owner'] as String? ?? 'no_owner',
       buyer: json['buyer'] as String? ?? 'no_buyer',
       photo_url: json['photo_url'] as String? ??
@@ -23,6 +24,7 @@ _$ReusableImpl _$$ReusableImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ReusableImplToJson(_$ReusableImpl instance) =>
     <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
       'owner': instance.owner,
       'buyer': instance.buyer,
       'photo_url': instance.photo_url,
