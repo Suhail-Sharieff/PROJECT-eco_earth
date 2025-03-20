@@ -36,6 +36,7 @@ class AuthMethods {
         //also create this user in Supabase
         await Supabase.instance.client.from('users').insert({
           'firebase_uid':instance.currentUser!.uid,
+          'user_name':instance.currentUser!.displayName
         });
 
         return SignedUpUserStatus.IS_EMAIL_VERFIED;

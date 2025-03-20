@@ -1,5 +1,6 @@
 import 'package:eco_earth/controllers/_06_reusables_controller/_01_resuables_controller.dart';
 import 'package:eco_earth/models/_04_reusables/reusable.dart';
+import 'package:eco_earth/pages/_02_Home_page/_01_home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -37,6 +38,7 @@ class _ReusableDetailsState extends State<ReusableDetails> {
       duration: Duration(seconds: 2),snackPosition: SnackPosition.TOP,
       margin: EdgeInsets.symmetric(vertical: 12),
     ));
+    Navigator.of(context).pushNamedAndRemoveUntil(HomePage.route_name, (_)=>false);
   }
 
   @override

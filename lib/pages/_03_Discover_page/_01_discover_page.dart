@@ -27,7 +27,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
       "description":
       "Zolopik / Trivendent Technologies is a Government Authorised E-Waste Recycler helping households and industries sell their e-waste at the best price.",
       "url": "https://zolopik.com/",
-      "logo": "https://zolopik.com/wp-content/uploads/2024/04/zolopik-logo.svg"
+      "logo": "https://th.bing.com/th/id/OIP.gy-XWqcGWQEZpe4WLPa-mwHaHa?rs=1&pid=ImgDetMain"
     },
     {
       "name": "EWRI",
@@ -48,7 +48,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
       "description":
       "Saahas Zero Waste focuses on resource recovery, safe livelihoods, zero landfill waste, and regulatory compliance through professional waste management.",
       "url": "https://saahaszerowaste.com/",
-      "logo": "https://saahas.org/wp-content/uploads/2024/04/Saahas-logo.svg"
+      "logo": "https://th.bing.com/th/id/OIP.beC-9I6XgC7kIqX5OiaDrAHaHa?rs=1&pid=ImgDetMain"
     },
   ];
 
@@ -63,7 +63,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: get_app_bar("Discover News!", true),
+      appBar: get_app_bar("Discover!", true),
       endDrawer: get_end_drawer(context),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
