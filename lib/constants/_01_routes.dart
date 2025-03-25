@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import '../pages/_01_auth_pages/_02_sign_up.dart';
 import '../pages/_01_auth_pages/_04_forgot_password.dart';
 import '../landing_page.dart';
+import '../pages/_13_notificatons/_01_notifications_page.dart';
 
 const splash_route='/splash/';
 //---------auth pages
@@ -39,6 +40,7 @@ const recycling_centres_routes='/recycling_centres_page/';
 const reusables_adding_page_route='/add_reusable/';
 const reusables_page_route='/reusables/';
 const dashboard_route='/dashboard/';
+const notification_route='/notifications/';
 
 
 
@@ -61,4 +63,5 @@ final Map<String, WidgetBuilder> routes = {
   AddReusablesPage.route_name:(_)=> AddReusablesPage(),
   ReusablesPage.route_name:(_)=>const ReusablesPage(),
   DashBoardPage.route_name:(_)=>const DashBoardPage(),
+  NotificationsPage.route_name:(_)=>const NotificationsPage(),
 };

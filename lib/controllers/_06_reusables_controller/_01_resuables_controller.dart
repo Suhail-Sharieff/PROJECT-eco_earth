@@ -72,5 +72,15 @@ class ReusableController extends GetxController {
     } catch (e) {
       throw Exception(e.toString());
     }
+  }Future<List<Map<String, dynamic>>> get_resuables_sold_by_user() async {
+    try {
+      var res = await instance
+          .from('reusables')
+          .select('*')
+          .eq('owner', FirebaseAuth.instance.currentUser!.uid);
+      return res;
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -9,7 +8,7 @@ class LeaderBoardController extends GetxController {
   Future<List<User>> getLeaderBoard() async {
     final List<Map<String, dynamic>> res = await instance.from('users').select('*');
     List<User> users =res.map((e) => User.fromJson(e)).toList();
-    users.sort((x,y)=>x.user_points.compareTo(y.user_points));
+    users.sort((x,y)=>y.user_points.compareTo(x.user_points));
     return users;
   }
 }

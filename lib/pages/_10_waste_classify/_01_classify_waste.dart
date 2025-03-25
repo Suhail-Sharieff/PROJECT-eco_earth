@@ -9,8 +9,7 @@ class ClassifyWastePage extends StatefulWidget {
   const ClassifyWastePage({Key? key}) : super(key: key);
 
   @override
-  State<ClassifyWastePage> createState() =>
-      _ClassifyWastePageState();
+  State<ClassifyWastePage> createState() => _ClassifyWastePageState();
 }
 
 class _ClassifyWastePageState extends State<ClassifyWastePage> {
@@ -68,6 +67,30 @@ class _ClassifyWastePageState extends State<ClassifyWastePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Placeholder with camera icon when no image is captured.
+    final placeholder = Container(
+      height: 250,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.shade400),
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.grey.shade100,
+      ),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.camera_alt, size: 50, color: Colors.grey.shade600),
+            const SizedBox(height: 8),
+            Text(
+              'Tap to capture image',
+              style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
+            ),
+          ],
+        ),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Waste Classifier"),
@@ -76,41 +99,67 @@ class _ClassifyWastePageState extends State<ClassifyWastePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Button to capture an image.
-            ElevatedButton(
-              onPressed: captureImage,
-              child: const Text("Capture Image"),
-            ),
-            const SizedBox(height: 10),
-            // Display the captured image if available.
-            if (capturedImage != null)
-              Container(
-                height: 200,
+            // Image capture area: shows a placeholder or the captured image.
+            GestureDetector(
+              onTap: captureImage,
+              child: capturedImage != null
+                  ? Container(
+                height: 250,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey.shade400),
+                  image: DecorationImage(
+                    image: MemoryImage(capturedImage!),
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                child: Image.memory(
-                  capturedImage!,
-                  fit: BoxFit.cover,
+              )
+                  : placeholder,
+            ),
+            const SizedBox(height: 16),
+            // Classify button.
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: loading || capturedImage == null ? null : classifyImage,
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  textStyle: const TextStyle(fontSize: 18),
                 ),
+                child: loading
+                    ? const SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2,
+                  ),
+                )
+                    : const Text("Classify"),
               ),
-            const SizedBox(height: 10),
-            // Button to classify the image using the fixed prompt.
-            ElevatedButton(
-              onPressed: loading ? null : classifyImage,
-              child: loading
-                  ? const CircularProgressIndicator(color: Colors.white)
-                  : const Text("Classify"),
             ),
             const SizedBox(height: 20),
-            // Display result or Lottie animation while loading.
+            // Result display area.
             Expanded(
-              child: Center(
-                child: loading
-                    ? Lottie.asset('assets/lottie/ai.json', height: 200)
-                    : SingleChildScrollView(
-                  child: MarkdownBody(data: result,),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade50,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: Center(
+                  child: loading
+                      ? Lottie.asset('assets/lottie/ai.json', height: 200)
+                      : result.isEmpty
+                      ? Text(
+                    'Your result will appear here.',
+                    style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
+                    textAlign: TextAlign.center,
+                  )
+                      : SingleChildScrollView(child: MarkdownBody(data: result)),
                 ),
               ),
             ),

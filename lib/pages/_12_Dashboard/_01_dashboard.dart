@@ -21,47 +21,131 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: get_app_bar('Dashboard', true),
-      body: FutureBuilder<List<Map<String, dynamic>>>(
-        future: controller.get_resuables_ordered_by_user(),
-        builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: Lottie.asset('assets/lottie/ai.json'));
-          }
-          if (snapshot.hasError) {
-            return const Center(child: Text('Something went wrong!'));
-          }
-          if (snapshot.data == null || snapshot.data!.isEmpty) {
-            return const Center(
-              child: Text('No order history! Buy something to earn points'),
-            );
-          }
-
-          final List<Map<String, dynamic>> li = snapshot.data!;
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                // Orders List
-                ListView.builder(
-                  padding: const EdgeInsets.all(12),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: li.length,
-                  itemBuilder: (_, idx) {
-                    final Reusable item = Reusable.fromJson(li[idx]);
-                    return _buildOrderCard(item);
-                  },
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50, // Light background color
+                  borderRadius: BorderRadius.circular(8), // Rounded corners
                 ),
-
-                const SizedBox(height: 20),
-
-                // Stats Section
-                _buildStatsSection(),
-
-                const SizedBox(height: 20),
-              ],
+                child: const Text(
+                  'Your Orders',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
             ),
-          );
-        },
+
+            FutureBuilder<List<Map<String, dynamic>>>(
+              future: controller.get_resuables_ordered_by_user(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: Lottie.asset('assets/lottie/ai.json'));
+                }
+                if (snapshot.hasError) {
+                  return const Center(child: Text('Something went wrong!'));
+                }
+                if (snapshot.data == null || snapshot.data!.isEmpty) {
+                  return const Center(
+                    child:
+                        Text('No order history! Buy something to earn points'),
+                  );
+                }
+
+                final List<Map<String, dynamic>> li = snapshot.data!;
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      // Orders List
+                      ListView.builder(
+                        padding: const EdgeInsets.all(12),
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: li.length,
+                        itemBuilder: (_, idx) {
+                          final Reusable item = Reusable.fromJson(li[idx]);
+                          return _buildOrderCard(item);
+                        },
+                      ),
+
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                );
+              },
+            ),
+
+            Center(
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50, // Light background color
+                  borderRadius: BorderRadius.circular(8), // Rounded corners
+                ),
+                child: const Text(
+                  'Your Contributions',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+            )
+            ,
+            FutureBuilder<List<Map<String, dynamic>>>(
+              future: controller.get_resuables_sold_by_user(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: Lottie.asset('assets/lottie/ai.json'));
+                }
+                if (snapshot.hasError) {
+                  return const Center(child: Text('Something went wrong!'));
+                }
+                if (snapshot.data == null || snapshot.data!.isEmpty) {
+                  return const Center(
+                    child:
+                        Text('No order history! Buy something to earn points'),
+                  );
+                }
+
+                final List<Map<String, dynamic>> li = snapshot.data!;
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      // Orders List
+                      ListView.builder(
+                        padding: const EdgeInsets.all(12),
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: li.length,
+                        itemBuilder: (_, idx) {
+                          final Reusable item = Reusable.fromJson(li[idx]);
+                          return _buildOrderCard(item);
+                        },
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // Stats Section
+                      _buildStatsSection(),
+
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -81,7 +165,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 width: 60,
                 height: 60,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => const Icon(Icons.image_not_supported),
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.image_not_supported),
               ),
             ),
             title: Text(
@@ -95,11 +180,13 @@ class _DashBoardPageState extends State<DashBoardPage> {
             trailing: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: item.status == 1 ? Colors.green.withOpacity(0.2) : Colors.orange.withOpacity(0.2),
+                color: item.status == 1
+                    ? Colors.green.withOpacity(0.2)
+                    : Colors.orange.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                item.status == 1 ? "Delivered" : "Pending",
+                item.status == 1 ? "Recycled" : "Pending",
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -108,23 +195,38 @@ class _DashBoardPageState extends State<DashBoardPage> {
               ),
             ),
           ),
-
           ExpansionTile(
-            title: const Text("About", style: TextStyle(fontWeight: FontWeight.bold)),
+            title: const Text("About",
+                style: TextStyle(fontWeight: FontWeight.bold)),
             children: [
               ListTile(
                 leading: const Icon(Icons.calendar_today, color: Colors.blue),
-                title: Text("Purchased Date: ${item.condition?.purchased_date ?? 'N/A'}"),
+                title: Text(
+                    "Purchased Date: ${item.condition?.purchased_date ?? 'N/A'}"),
               ),
               ListTile(
-                leading: Icon(item.condition?.is_working == true ? Icons.check_circle : Icons.error,
-                    color: item.condition?.is_working == true ? Colors.green : Colors.red),
-                title: Text(item.condition?.is_working == true ? "Working Condition" : "Not Working"),
+                leading: Icon(
+                    item.condition?.is_working == true
+                        ? Icons.check_circle
+                        : Icons.error,
+                    color: item.condition?.is_working == true
+                        ? Colors.green
+                        : Colors.red),
+                title: Text(item.condition?.is_working == true
+                    ? "Working Condition"
+                    : "Not Working"),
               ),
               ListTile(
-                leading: Icon(item.condition?.needs_repairs == true ? Icons.build : Icons.done,
-                    color: item.condition?.needs_repairs == true ? Colors.orange : Colors.green),
-                title: Text(item.condition?.needs_repairs == true ? "Needs Repairs" : "No Repairs Needed"),
+                leading: Icon(
+                    item.condition?.needs_repairs == true
+                        ? Icons.build
+                        : Icons.done,
+                    color: item.condition?.needs_repairs == true
+                        ? Colors.orange
+                        : Colors.green),
+                title: Text(item.condition?.needs_repairs == true
+                    ? "Needs Repairs"
+                    : "No Repairs Needed"),
               ),
             ],
           ),
@@ -133,6 +235,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
       ),
     );
   }
+
   Widget _buildStatsSection() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -142,17 +245,24 @@ class _DashBoardPageState extends State<DashBoardPage> {
           const SizedBox(height: 10),
           _buildStatCard("Carbon Saved", "125 kg", Icons.eco, Colors.blue),
           const SizedBox(height: 10),
-          _buildStatCard("Materials Recovered", "18 kg", Icons.battery_full, Colors.purple),
+          _buildStatCard("Materials Recovered", "18 kg", Icons.battery_full,
+              Colors.purple),
           const SizedBox(height: 10),
-          _buildStatCard("Impact Score", "320", Icons.emoji_events, Colors.orange),
+          _buildStatCard(
+              "Impact Score", "320", Icons.emoji_events, Colors.orange),
           const SizedBox(height: 10),
-          _buildAchievementBadges(["Early Adopter", "Eco Warrior", "Tech Recycler"]),
+          _buildStatCard(
+              "Earnings", "1000", Icons.currency_rupee, Colors.black),
+          const SizedBox(height: 10),
+          _buildAchievementBadges(
+              ["Early Adopter", "Eco Warrior", "Tech Recycler"]),
         ],
       ),
     );
   }
 
-  Widget _buildStatCard(String title, String value, IconData icon, Color color) {
+  Widget _buildStatCard(
+      String title, String value, IconData icon, Color color) {
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -171,12 +281,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     value,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: color),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: color),
                   ),
                 ],
               ),
@@ -239,7 +353,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
                         ),
                       ],
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     child: Text(
                       badge,
                       style: const TextStyle(
@@ -256,5 +371,4 @@ class _DashBoardPageState extends State<DashBoardPage> {
       ),
     );
   }
-
 }
