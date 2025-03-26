@@ -57,8 +57,8 @@ EchoEarth combines convenience, user engagement, and environmental sustainabilit
 
 To contribute to this project, follow these steps:
 
-- **📥 Clone the Repository**: `<repo-url>`
-- **🔧 Install Dependencies**
+- **📥 Clone the Repository**: `git clone https://github.com/Suhail-Sharieff/PROJECT-eco_earth.git`
+- **🔧 Install Dependencies** `pub get`
 - **🔥 Connect to Firebase**:
   - 📜 Follow the instructions in the Firebase Console.
   - ⚡ Activate Firebase CLI.
