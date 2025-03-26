@@ -1,50 +1,61 @@
-# eco_earth
+# 🌍 Eco_Earth
 
-This project is a part of Google Solution Challenge 2025
+## 🔍 Project Overview
 
+Eco_Earth is a part of the Google Solution Challenge 2025 and focuses on 🌱 sustainable ♻️ waste management and recycling solutions.
 
-For those who want to collaborate with this project
-1. clone repo
-2. Install all dependencies
-3. Connect this to firebase account using instructions given in Firebase Console and activate firebase cli
-4. Create schema in ur Supabase project editors:![supabase-schema-xvvpxcbyerznsqbbagkv (1)](https://github.com/user-attachments/assets/beb808df-377e-4205-b2b2-9807d75fee93), make sure u define RLS policies atleast for anon right now
-5. Create a secrets.dart in lib folder like this:
-```
+# 🤝 How to Collaborate
+
+To contribute to this project, follow these steps:
+
+- **📥 Clone the Repository**: `<repo-url>`
+- **🔧 Install Dependencies**
+- **🔥 Connect to Firebase**:
+  - 📜 Follow the instructions in the Firebase Console.
+  - ⚡ Activate Firebase CLI.
+- **🛠️ Set Up Supabase**:
+  - 🗂️ Create a schema in your Supabase project editor.
+  - 🔐 Ensure that RLS (Row Level Security) policies are defined for at least anonymous users.
+- **📄 Create a `secrets.dart` File in the `lib` Folder**:
+   ```dart
+   /// 🔥 Firebase Configuration Constants
+   const API_KEY_ANDROID = '';
+   const API_KEY_WEB = '';
+   const API_KEY_IOS = '';
    
+   const APP_ID_ANDROID = '';
+   const APP_ID_WEB = '';
+   const APP_ID_IOS = '';
+   
+   const MESSAGING_SENDER_ID = '';
+   const PROJECT_ID = '';
+   const AUTH_DOMAIN = '';
+   const STORAGE_BUCKET = '';
+   const MEASUREMENT_ID = '';
+   
+   const IOS_BUNDLE_ID = '';
+   
+   const SUPABASE_URL = '';
+   const ANON_KEY = '';
+   const SERVICE_ROLE = '';
+   const JWT_SECRET = '';
+   
+   const GEMINI_API_KEY = '';
 
-/// Firebase Configuration Constants
-const API_KEY_ANDROID = '';
-const API_KEY_WEB = '';
-const API_KEY_IOS = '';
+## 🛠️ Ensure Version Compatibility:
 
-const APP_ID_ANDROID = '';
-const APP_ID_WEB = '';
-const APP_ID_IOS = '';
+🦋 Flutter 3.24.5
 
-const MESSAGING_SENDER_ID = '';
+🎯 Dart 3.5.4
 
-const PROJECT_ID = '';
+## 🛠️ DevTools 2.37.3
 
-const AUTH_DOMAIN = '';
-const STORAGE_BUCKET = '';
-const MEASUREMENT_ID = 'L';
+⚙️ Resolve JDK Issues:
 
-const IOS_BUNDLE_ID = '';
+📌 Refer to Flutter Issue #156304
 
-const SUPABASE_URL='';
-const ANON_KEY='';
-const SERVICE_ROLE='';
-const JWT_SECRET='';
+🚀 Start and Enjoy the App!
 
-
-const GEMINI_API_KEY='';
-```
-7. Make sure u solve version conflicts, the versions while i made this projects is:
-Flutter 3.24.5 
-Dart 3.5.4
-DevTools 2.37.3
-8. Resolve any JDK related issues wreft [ flutter/flutter#156304 (comment)](https://github.com/flutter/flutter/issues/156304#issuecomment-2397707812)
-9. Enjoy the app!
 
 ## Some Screen shots
 1. HomePage
@@ -72,6 +83,14 @@ DevTools 2.37.3
 9. Vendor upon registeration can efficiently manage his contracts in realtime
     ![image](https://github.com/user-attachments/assets/96e62e00-19f2-45ac-9df5-42a0b0556ba1)
    ![image](https://github.com/user-attachments/assets/1177dbda-daf6-4bae-b2fb-4495dd2850c6)
+10. Users get notified on thier activity
+   ![image](https://github.com/user-attachments/assets/b9602b6d-09be-432b-b05c-c9c5e71b6fe1)
+11. Leader board based on points
+    ![image](https://github.com/user-attachments/assets/9f7cd336-5ac3-4823-ba30-d6207a637ad4)
+12. Discover section to explore other waste management portals
+    ![image](https://github.com/user-attachments/assets/18d589b4-28cc-4c89-829a-43aa1fc8c8b5)
+
+
 
 
 
