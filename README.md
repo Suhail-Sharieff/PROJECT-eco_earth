@@ -1,6 +1,6 @@
 # 🌍 Eco_Earth
 
-## Web view: project-eco-earth.vercel.app
+## Web view: [Click here](project-eco-earth.vercel.app)
 
 ## 🔍 Project Overview
 
