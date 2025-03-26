@@ -4,6 +4,55 @@
 
 Eco_Earth is a part of the Google Solution Challenge 2025 and focuses on 🌱 sustainable ♻️ waste management and recycling solutions.
 
+## 📖 App Overview
+EchoEarth is an innovative app aimed at promoting eco-friendly practices by encouraging recycling and the reuse of materials. It provides a platform where users can interact with vendors, report environmental pollution, locate recycling centers, and get rewarded for their contributions to the environment.
+
+## 🔑 Key Features
+
+### 🏠 Homepage
+The homepage serves as a hub for users to access several features that promote sustainability.
+
+### ♻️ Reusables
+- Users can view available reusable items at affordable prices.
+- If an item is in stock, users can click on it to see more details and opt to "Buy Now."
+- The "Buy Now" option sends a notification to the vendor or product owner, requesting the purchase of the item.
+
+### 📝 Complaint Registration
+- Users can register complaints about environmental pollution, including e-waste, plastic, or any other type of waste.
+- They can upload a photo, provide the location, and describe the pollution.
+- Complaints will be publicly visible to municipalities and authorities for action.
+
+### 🏭 Recycling Centers Near Me
+- Displays nearby recycling centers with categories of materials they accept (e.g., e-waste, metal, plastic).
+- Centers are rated out of five stars.
+- Users can view the owner's name, location, accepted material categories, and rating by clicking on a recycling center.
+- Option to "Request Services" by entering the weight of recyclable material, and a notification will be sent to the vendor for team collection.
+
+### 📊 User Dashboard
+- Users can track their history, including previous orders and contributions.
+- Contributions (such as the number of recycled items) earn the user points.
+- A leaderboard is displayed to showcase top contributors.
+
+### 🤖 AI Waste Classifier (Gemini API)
+- Users can take a picture of any waste and classify it using the Gemini API.
+- Classifies waste into recyclable, reusable, or other types.
+
+### 🏪 Vendor Registration
+- Users can register as vendors by filling out a form.
+- Vendor profiles are publicly visible to users for engagement.
+
+### 🌍 Discover Section
+- Users can explore other waste management portals, both government and private, for additional recycling opportunities.
+
+### 🏆 Leaderboard
+- Displays rankings based on points earned from recycling and environmental contributions.
+
+### 🔔 Notifications
+- Users are notified about rewards earned, ecological events participated in, or any other important updates.
+
+## 🌿 Additional Information
+EchoEarth combines convenience, user engagement, and environmental sustainability into one app. The platform promotes a circular economy by encouraging reuse, recycling, and responsible waste management.
+
 # 🤝 How to Collaborate
 
 To contribute to this project, follow these steps:
