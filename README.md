@@ -1,5 +1,7 @@
 # 🌍 Eco_Earth
 
+## Web view: project-eco-earth.vercel.app
+
 ## 🔍 Project Overview
 
 Eco_Earth is a part of the Google Solution Challenge 2025 and focuses on 🌱 sustainable ♻️ waste management and recycling solutions.
