@@ -64,6 +64,8 @@ To contribute to this project, follow these steps:
   - ⚡ Activate Firebase CLI.
 - **🛠️ Set Up Supabase**:
   - 🗂️ Create a schema in your Supabase project editor.
+    ![supabase-schema-xvvpxcbyerznsqbbagkv (1)](https://github.com/user-attachments/assets/bd321d3b-0af6-45b5-a25a-b4ed20d6d508)
+
   - 🔐 Ensure that RLS (Row Level Security) policies are defined for at least anonymous users.
 - **📄 Create a `secrets.dart` File in the `lib` Folder**:
    ```dart
