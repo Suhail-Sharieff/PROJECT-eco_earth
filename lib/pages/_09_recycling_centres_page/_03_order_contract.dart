@@ -1,6 +1,7 @@
 import 'package:eco_earth/Utils/_03_show_toast.dart';
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/controllers/_05_contract_controller/_01_contract_controller.dart';
+import 'package:eco_earth/landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/models/_02_vendor_model/vendor.dart';
@@ -87,7 +88,7 @@ class _OrderContractPageState extends State<OrderContractPage> {
                 Navigator.of(context).pop();
                 await contractController.place_contract_to(vendor, results);
                 showToast('You will be soon notified by vendor!', Colors.green);
-                Get.toNamed(home_route);
+                Get.toNamed(Landing_page.route_name);
               },
               child: const Text('Place Order'),
             ),

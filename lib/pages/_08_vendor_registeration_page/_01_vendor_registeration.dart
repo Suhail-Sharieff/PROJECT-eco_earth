@@ -2,6 +2,7 @@ import 'package:eco_earth/Utils/_03_show_toast.dart';
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/controllers/_04_vendor_controller/_01_vendor_controller.dart';
+import 'package:eco_earth/landing_page.dart';
 import 'package:eco_earth/models/_02_vendor_model/vendor.dart';
 import 'package:eco_earth/pages/_08_vendor_registeration_page/_02_contracts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -145,7 +146,7 @@ class _VendorRegistrationPageState extends State<VendorRegistrationPage> {
                                         vendor_phone_number: vendorPhoneNumberController.text,
                                       )
                                     );
-                                    Get.toNamed(home_route);
+                                    Get.toNamed(Landing_page.route_name);
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(content: Text('Please select at least one category and enter cost')),

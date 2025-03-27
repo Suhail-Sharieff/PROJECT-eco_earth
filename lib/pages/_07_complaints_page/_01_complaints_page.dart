@@ -2,6 +2,7 @@ import 'package:eco_earth/Utils/_02_button.dart';
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/controllers/_03_complaint_controller/_01_complaint_controller.dart';
+import 'package:eco_earth/landing_page.dart';
 import 'package:eco_earth/models/_01_complaint_model/complaint.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,7 +73,7 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
                       await controller.add_complaint(photoUrlController.text,
                           locationController.text, descriptionController.text);
                       isLoading=false;
-                      Get.toNamed(home_route);
+                      Get.toNamed(Landing_page.route_name);
                     },
                     btnColor: Colors.blue),
 
