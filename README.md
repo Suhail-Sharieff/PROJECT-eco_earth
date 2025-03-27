@@ -9,6 +9,12 @@ Eco_Earth is a part of the Google Solution Challenge 2025 and focuses on 🌱 su
 ## 📖 App Overview
 EchoEarth is an innovative app aimed at promoting eco-friendly practices by encouraging recycling and the reuse of materials. It provides a platform where users can interact with vendors, report environmental pollution, locate recycling centers, and get rewarded for their contributions to the environment.
 
+## Techstack details
+- MVVM model with clean and manageable code
+- GetX for efficient state management
+- Firebase for authentication 
+- Supabase for database storage
+
 ## 🔑 Key Features
 
 ### 🏠 Homepage
