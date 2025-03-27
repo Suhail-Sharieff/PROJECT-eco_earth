@@ -1,5 +1,6 @@
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/controllers/_06_reusables_controller/_01_resuables_controller.dart';
+import 'package:eco_earth/landing_page.dart';
 import 'package:eco_earth/pages/_02_Home_page/_01_home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,7 @@ class _AddReusablesPageState extends State<AddReusablesPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Form submitted successfully!')),
       );
-      Get.toNamed(HomePage.route_name);
+      Get.toNamed(Landing_page.route_name);
     }
   }
 
