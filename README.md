@@ -116,9 +116,10 @@ To contribute to this project, follow these steps:
 |:-------------------------:|:-------------------------:|:-------------------------:|
 | ![Home Page 1](https://github.com/user-attachments/assets/bedf19d7-dfbf-41f1-bae9-d1f99cff7274) | ![Home Page 2](https://github.com/user-attachments/assets/124094ff-de41-4ed5-9b66-2b02719005dd) | ![Profile](https://github.com/user-attachments/assets/3f12bbdc-e2bc-4182-aa94-c68a16e8ba57) |
 | ![Settings](https://github.com/user-attachments/assets/05d633eb-cda4-4ea5-a897-cf27ec831631) | ![Reusables 1](https://github.com/user-attachments/assets/7c2743c8-52ac-46af-81bf-4543b522f7ec) | ![Reusables 2](https://github.com/user-attachments/assets/5620a762-b816-4edb-ae52-d4e6cba7c121) |
-| ![Reusables 3](https://github.com/user-attachments/assets/5ceee140-a35e-4512-9d4f-ee6d6744f6d1) | ![Complaint](https://github.com/user-attachments/assets/99f7c9a4-5ecd-46f7-8be7-8081c269ff23) | ![Recycling Center 1](https://github.com/user-attachments/assets/1781df46-0685-488a-80c7-6d1ce7f1ca69) |
+| ![Reusables 3](https://github.com/user-attachments/assets/5ceee140-a35e-4512-9d4f-ee6d6744f6d1) | ![Discover](https://github.com/user-attachments/assets/18d589b4-28cc-4c89-829a-43aa1fc8c8b5)  | ![Recycling Center 1](https://github.com/user-attachments/assets/1781df46-0685-488a-80c7-6d1ce7f1ca69) |
 | ![Recycling Center 2](https://github.com/user-attachments/assets/e3a6a420-1c1b-46b9-869b-cfb52baf3008) | ![Dashboard 1](https://github.com/user-attachments/assets/6b3b8315-331c-4827-89a8-22e0e5d8e6a8) | ![Dashboard 2](https://github.com/user-attachments/assets/7d454b69-63ec-427c-9415-148b3fd3bef3) |
 | ![AI Classifier 1](https://github.com/user-attachments/assets/15d1af27-dec0-4105-806a-19dd6bfc5cc7) | ![AI Classifier 2](https://github.com/user-attachments/assets/76b8251a-d67a-4f3d-9d68-76dd2cae7ae5) | ![Vendor 1](https://github.com/user-attachments/assets/96e62e00-19f2-45ac-9df5-42a0b0556ba1) |
 | ![Vendor 2](https://github.com/user-attachments/assets/1177dbda-daf6-4bae-b2fb-4495dd2850c6) | ![Notifications](https://github.com/user-attachments/assets/b9602b6d-09be-432b-b05c-c9c5e71b6fe1) | ![Leaderboard](https://github.com/user-attachments/assets/9f7cd336-5ac3-4823-ba30-d6207a637ad4) |
-| ![Discover](https://github.com/user-attachments/assets/18d589b4-28cc-4c89-829a-43aa1fc8c8b5) | | |
+| <img width="377" alt="image" src="https://github.com/user-attachments/assets/a26344eb-cee7-4d6c-814c-09a57dd4b728" />
+ | | |
 
