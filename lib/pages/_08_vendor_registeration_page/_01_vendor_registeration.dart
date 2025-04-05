@@ -49,10 +49,13 @@ class _VendorRegistrationPageState extends State<VendorRegistrationPage> {
       future: vendorcontroller.curr_user_is_vendor(),
       builder: (context,snap) {
         if(snap.connectionState==ConnectionState.waiting) {
-          showToast('You r already registered!', Colors.blueAccent);
           return Center(child: Lottie.asset('assets/lottie/ai.json', height: 200,),);
         }
-        if(snap.data==true) return const VendorContractsPage();
+        if(snap.data==true) {
+          showToast('You r already registered!', Colors.blueAccent);
+          return const VendorContractsPage();
+        }
+        showToast('You need to register first', Colors.blue);
         return Scaffold(
           appBar: get_app_bar('', true),
           body: Container(

@@ -113,7 +113,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 if (snapshot.data == null || snapshot.data!.isEmpty) {
                   return const Center(
                     child:
-                        Text('No order history! Buy something to earn points'),
+                        Text('You have not recycled anything yet! '),
                   );
                 }
 
