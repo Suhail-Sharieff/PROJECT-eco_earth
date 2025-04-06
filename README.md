@@ -72,7 +72,18 @@ To contribute to this project, follow these steps:
   - ⚡ Activate Firebase CLI.
 - **🛠️ Set Up Supabase**:
   - 🗂️ Create a schema in your Supabase project editor.
-    ![supabase-schema-xvvpxcbyerznsqbbagkv (1)](https://github.com/user-attachments/assets/bd321d3b-0af6-45b5-a25a-b4ed20d6d508)
+    ![supabase-schema-xvvpxcbyerznsqbbagkv](https://github.com/user-attachments/assets/99d107e5-b534-464a-a15f-1cf904d1e686)
+  - Also add a Enum `OrderStatus` that I have used to track Orders
+```dart
+enum OrderStatus {
+  Packed,
+  Shipped,
+  Delivered,
+  Paid,
+  Approved,
+  Cancelled,
+}
+```
 
   - 🔐 Ensure that RLS (Row Level Security) policies are defined for at least anonymous users.
 - **📄 Create a `secrets.dart` File in the `lib` Folder**:
@@ -120,6 +131,5 @@ To contribute to this project, follow these steps:
 | ![Recycling Center 2](https://github.com/user-attachments/assets/e3a6a420-1c1b-46b9-869b-cfb52baf3008) | ![Dashboard 1](https://github.com/user-attachments/assets/6b3b8315-331c-4827-89a8-22e0e5d8e6a8) | ![Dashboard 2](https://github.com/user-attachments/assets/7d454b69-63ec-427c-9415-148b3fd3bef3) |
 | ![AI Classifier 1](https://github.com/user-attachments/assets/15d1af27-dec0-4105-806a-19dd6bfc5cc7) | ![AI Classifier 2](https://github.com/user-attachments/assets/76b8251a-d67a-4f3d-9d68-76dd2cae7ae5) | ![Vendor 1](https://github.com/user-attachments/assets/96e62e00-19f2-45ac-9df5-42a0b0556ba1) |
 | ![Vendor 2](https://github.com/user-attachments/assets/1177dbda-daf6-4bae-b2fb-4495dd2850c6) | ![Notifications](https://github.com/user-attachments/assets/b9602b6d-09be-432b-b05c-c9c5e71b6fe1) | ![Leaderboard](https://github.com/user-attachments/assets/9f7cd336-5ac3-4823-ba30-d6207a637ad4) |
-| <img width="377" alt="image" src="https://github.com/user-attachments/assets/a26344eb-cee7-4d6c-814c-09a57dd4b728" />
- | | |
+| <img width="377" alt="image" src="https://github.com/user-attachments/assets/a26344eb-cee7-4d6c-814c-09a57dd4b728" /> | ![image](https://github.com/user-attachments/assets/a0e6c793-3624-489a-a1e2-2ac0081056a1)|![image](https://github.com/user-attachments/assets/aad981af-abe7-4bb4-9693-7077bc44a0c0)||
 
