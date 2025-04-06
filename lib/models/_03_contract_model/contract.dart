@@ -9,7 +9,7 @@ class Contract with _$Contract{
   @JsonSerializable(explicitToJson: true)
   factory Contract({
     @JsonKey(name: 'id', includeIfNull: false) int? id,
-    @JsonKey(name: 'created_at') DateTime? created_at,
+    @JsonKey(name: 'created_at',includeIfNull: false) DateTime? created_at,
     @Default('no-from-id') @JsonKey(name: 'from_id') String from_id,
     @Default('no-to-id') @JsonKey(name: 'to_id') String to_id,
     @Default('no-customer-name') @JsonKey(name: 'customer_name') String customer_name,

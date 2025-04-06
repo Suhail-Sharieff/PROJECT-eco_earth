@@ -22,7 +22,7 @@ Contract _$ContractFromJson(Map<String, dynamic> json) {
 mixin _$Contract {
   @JsonKey(name: 'id', includeIfNull: false)
   int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
+  @JsonKey(name: 'created_at', includeIfNull: false)
   DateTime? get created_at => throw _privateConstructorUsedError;
   @JsonKey(name: 'from_id')
   String get from_id => throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ abstract class $ContractCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id', includeIfNull: false) int? id,
-      @JsonKey(name: 'created_at') DateTime? created_at,
+      @JsonKey(name: 'created_at', includeIfNull: false) DateTime? created_at,
       @JsonKey(name: 'from_id') String from_id,
       @JsonKey(name: 'to_id') String to_id,
       @JsonKey(name: 'customer_name') String customer_name,
@@ -127,7 +127,7 @@ abstract class _$$ContractImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id', includeIfNull: false) int? id,
-      @JsonKey(name: 'created_at') DateTime? created_at,
+      @JsonKey(name: 'created_at', includeIfNull: false) DateTime? created_at,
       @JsonKey(name: 'from_id') String from_id,
       @JsonKey(name: 'to_id') String to_id,
       @JsonKey(name: 'customer_name') String customer_name,
@@ -195,7 +195,7 @@ class __$$ContractImplCopyWithImpl<$Res>
 class _$ContractImpl implements _Contract {
   _$ContractImpl(
       {@JsonKey(name: 'id', includeIfNull: false) this.id,
-      @JsonKey(name: 'created_at') this.created_at,
+      @JsonKey(name: 'created_at', includeIfNull: false) this.created_at,
       @JsonKey(name: 'from_id') this.from_id = 'no-from-id',
       @JsonKey(name: 'to_id') this.to_id = 'no-to-id',
       @JsonKey(name: 'customer_name') this.customer_name = 'no-customer-name',
@@ -211,7 +211,7 @@ class _$ContractImpl implements _Contract {
   @JsonKey(name: 'id', includeIfNull: false)
   final int? id;
   @override
-  @JsonKey(name: 'created_at')
+  @JsonKey(name: 'created_at', includeIfNull: false)
   final DateTime? created_at;
   @override
   @JsonKey(name: 'from_id')
@@ -288,7 +288,8 @@ class _$ContractImpl implements _Contract {
 abstract class _Contract implements Contract {
   factory _Contract(
       {@JsonKey(name: 'id', includeIfNull: false) final int? id,
-      @JsonKey(name: 'created_at') final DateTime? created_at,
+      @JsonKey(name: 'created_at', includeIfNull: false)
+      final DateTime? created_at,
       @JsonKey(name: 'from_id') final String from_id,
       @JsonKey(name: 'to_id') final String to_id,
       @JsonKey(name: 'customer_name') final String customer_name,
@@ -303,7 +304,7 @@ abstract class _Contract implements Contract {
   @JsonKey(name: 'id', includeIfNull: false)
   int? get id;
   @override
-  @JsonKey(name: 'created_at')
+  @JsonKey(name: 'created_at', includeIfNull: false)
   DateTime? get created_at;
   @override
   @JsonKey(name: 'from_id')

@@ -18,6 +18,7 @@ class Reusable with _$Reusable{
     @Default('title') @JsonKey(name: 'title') String title,
     @Default(0) @JsonKey(name: 'status') int status,
     @JsonKey(name: 'item_condition_map')ItemCondition? condition,
+    @Default('No pickup address provided')@JsonKey(name: 'pickup_location') String pickup_location,
   })=_Reusable;
   factory Reusable.fromJson(Map<String, dynamic> json) => _$ReusableFromJson(json);
 }

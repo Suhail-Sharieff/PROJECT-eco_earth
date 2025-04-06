@@ -20,6 +20,8 @@ _$ReusableImpl _$$ReusableImplFromJson(Map<String, dynamic> json) =>
           ? null
           : ItemCondition.fromJson(
               json['item_condition_map'] as Map<String, dynamic>),
+      pickup_location:
+          json['pickup_location'] as String? ?? 'No pickup address provided',
     );
 
 Map<String, dynamic> _$$ReusableImplToJson(_$ReusableImpl instance) =>
@@ -32,4 +34,5 @@ Map<String, dynamic> _$$ReusableImplToJson(_$ReusableImpl instance) =>
       'title': instance.title,
       'status': instance.status,
       'item_condition_map': instance.condition?.toJson(),
+      'pickup_location': instance.pickup_location,
     };

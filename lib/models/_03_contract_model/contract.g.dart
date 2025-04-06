@@ -23,7 +23,8 @@ _$ContractImpl _$$ContractImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ContractImplToJson(_$ContractImpl instance) =>
     <String, dynamic>{
       if (instance.id case final value?) 'id': value,
-      'created_at': instance.created_at?.toIso8601String(),
+      if (instance.created_at?.toIso8601String() case final value?)
+        'created_at': value,
       'from_id': instance.from_id,
       'to_id': instance.to_id,
       'customer_name': instance.customer_name,

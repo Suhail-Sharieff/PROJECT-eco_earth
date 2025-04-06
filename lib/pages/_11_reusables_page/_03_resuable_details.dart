@@ -1,12 +1,9 @@
 import 'package:eco_earth/controllers/_06_reusables_controller/_01_resuables_controller.dart';
 import 'package:eco_earth/landing_page.dart';
 import 'package:eco_earth/models/_04_reusables/reusable.dart';
-import 'package:eco_earth/pages/_02_Home_page/_01_home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../models/_05_item_condition/item_condition.dart';
 
@@ -36,10 +33,51 @@ class _ReusableDetailsState extends State<ReusableDetails> {
       messageText: Text('Order placed , check your dashboard to track!'),
       icon: Icon(Icons.done_outline_sharp),
       backgroundColor: Colors.greenAccent,
-      duration: Duration(seconds: 2),snackPosition: SnackPosition.TOP,
+      duration: Duration(seconds: 2),
+      snackPosition: SnackPosition.TOP,
       margin: EdgeInsets.symmetric(vertical: 12),
     ));
     Get.toNamed(Landing_page.route_name);
+  }
+
+  Future<void> _showConfirmationDialog() async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Row(
+            children: [
+              Icon(Icons.shopping_cart_checkout, color: Colors.green),
+              SizedBox(width: 8),
+              Text("Confirm Purchase",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+            ],
+          ),
+          content: const Text("Are you sure you want to buy this item?"),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          actions: [
+            TextButton(
+              child: const Text("No", style: TextStyle(color: Colors.red)),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close dialog
+              },
+            ),
+            ElevatedButton.icon(
+              onPressed: () async {
+                Navigator.of(context).pop();
+                await _buyNow();
+              },
+              icon: const Icon(Icons.check),
+              label: const Text("Yes"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -122,6 +160,34 @@ class _ReusableDetailsState extends State<ReusableDetails> {
                       "Needs Repairs",
                       (condition?.needs_repairs ?? false) ? "Yes 🔧" : "No ✅",
                     ),
+                    const Divider(),
+                    ListTile(
+                      title: const Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.location_on),
+                          Text(
+                            'Pickup Location',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 13),
+                          ),
+                        ],
+                      ),
+                      subtitle: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF5F5F5),
+                          border: Border.all(color: Colors.grey.shade300),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          item.pickup_location,
+                          style: const TextStyle(fontSize: 14),
+                          softWrap: true,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -134,7 +200,7 @@ class _ReusableDetailsState extends State<ReusableDetails> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: _buyNow,
+                  onPressed: _showConfirmationDialog,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     padding: const EdgeInsets.symmetric(vertical: 14),
