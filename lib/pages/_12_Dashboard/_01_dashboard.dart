@@ -2,6 +2,7 @@ import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/controllers/_06_reusables_controller/_01_resuables_controller.dart';
 import 'package:eco_earth/models/_04_reusables/reusable.dart';
+import 'package:eco_earth/pages/_12_Dashboard/_02_track_order.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -166,7 +167,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
                 height: 60,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.image_not_supported),
+                const Icon(Icons.image_not_supported),
               ),
             ),
             title: Text(
@@ -230,6 +231,46 @@ class _DashBoardPageState extends State<DashBoardPage> {
               ),
             ],
           ),
+          // Show the Track Order button if item.status is 0 (Pending)
+          if (item.status == 0)
+            Padding(
+              padding:
+              const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
+              child: ElevatedButton(onPressed: (){
+                List<StepModel> steps = [
+                  StepModel(
+                    type: StepType.personalInfo,
+                    title: "Personal Info",
+                    description: "Enter your personal information",
+                    isCompleted: true,
+                  ),
+                  StepModel(
+                    type: StepType.accountInfo,
+                    title: "Account Info",
+                    description: "Setup your account credentials",
+                    isCompleted: false,
+                  ),
+                  StepModel(
+                    type: StepType.review,
+                    title: "Review",
+                    description: "Review your details before submitting",
+                    isCompleted: false,
+                  ),
+                  StepModel(
+                    type: StepType.confirmation,
+                    title: "Confirmation",
+                    description: "Confirmation of your submission",
+                    isCompleted: false,
+                  ),
+                ];
+
+                // Navigate to the StepperPage when tapped
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CustomStepper(steps: steps)),
+                );
+              }, child: Text('Track Order')),
+            ),
           const SizedBox(height: 8),
         ],
       ),
