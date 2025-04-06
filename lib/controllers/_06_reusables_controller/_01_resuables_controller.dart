@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:eco_earth/enum/_02_order_status.dart';
 import 'package:eco_earth/models/_03_contract_model/contract.dart';
 import 'package:eco_earth/models/_04_reusables/reusable.dart';
 import 'package:eco_earth/models/_05_item_condition/item_condition.dart';
@@ -43,7 +44,7 @@ class ReusableController extends GetxController {
     try {
       // update that item status as not in stock and buyer name
       Reusable newItemState = item.copyWith(
-        status: 1,
+        order_status: OrderStatus.Paid,
         buyer: buyer_uid,
       );
       await instance
@@ -55,7 +56,7 @@ class ReusableController extends GetxController {
             from_id: item.owner,
             to_id: buyer_uid,
             customer_name: FirebaseAuth.instance.currentUser!.displayName!,
-            contract_status: "PENDING",
+            order_status: OrderStatus.Approved,
           ));
     } catch (e) {
       log(e.toString());

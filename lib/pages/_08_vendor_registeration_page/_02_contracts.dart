@@ -1,7 +1,9 @@
 import 'package:eco_earth/Utils/_03_show_toast.dart';
 import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/controllers/_05_contract_controller/_01_contract_controller.dart';
+import 'package:eco_earth/enum/_02_order_status.dart';
 import 'package:eco_earth/models/_03_contract_model/contract.dart';
+import 'package:eco_earth/pages/_08_vendor_registeration_page/_03_contract_details.dart';
 import 'package:eco_earth/pages/_11_reusables_page/_01_add_reusbale.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,19 +60,19 @@ class _VendorContractsPageState extends State<VendorContractsPage> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   decoration: BoxDecoration(
-                    color: get_color(contract.contract_status),
+                    color: get_color(contract.order_status),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    contract.contract_status,
+                    contract.order_status.name,
                     style: const TextStyle(fontSize: 12, color: Colors.white),
                   ),
                 ),
                 ElevatedButton(
                   onPressed: () async{
-                    await contractController.mark_as_completed(contract);
+                   Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ContractDetailsPage(contract: contract)));
                   },
-                  child: const Text('Collected'),
+                  child: const Text('Track'),
                 ),
               ],
             ),
@@ -81,15 +83,23 @@ class _VendorContractsPageState extends State<VendorContractsPage> {
   }
 
 
-  static Color get_color(String status) {
+  static Color get_color(OrderStatus status) {
     switch (status) {
-      case 'PENDING':
+      case OrderStatus.Packed:
+        return Colors.orange;
+      case OrderStatus.Shipped:
+        return Colors.blue;
+      case OrderStatus.Delivered:
+        return Colors.indigo;
+      case OrderStatus.Paid:
+        return Colors.green; // Green for Paid
+      case OrderStatus.Approved:
+        return Colors.teal;
+      case OrderStatus.Cancelled:
         return Colors.red;
-      case 'COMPLETED':
-        return Colors.green;
-    }
-    return Colors.brown;
-  }
+      default:
+        return Colors.grey;
+    }}
 
   @override
   Widget build(BuildContext context) {
@@ -157,6 +167,7 @@ class _VendorContractsPageState extends State<VendorContractsPage> {
         tooltip: 'Add item to reusable', onPressed: () {
           Get.toNamed(AddReusablesPage.route_name);
       },
+        child: const Icon(Icons.attach_money),
       ),
     );
   }

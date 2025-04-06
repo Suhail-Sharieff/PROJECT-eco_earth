@@ -32,12 +32,12 @@ mixin _$Reusable {
   int get cost => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'status')
-  int get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'item_condition_map')
   ItemCondition? get condition => throw _privateConstructorUsedError;
   @JsonKey(name: 'pickup_location')
   String get pickup_location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_status', includeIfNull: false)
+  OrderStatus get order_status => throw _privateConstructorUsedError;
 
   /// Serializes this Reusable to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -61,9 +61,10 @@ abstract class $ReusableCopyWith<$Res> {
       @JsonKey(name: 'photo_url') String photo_url,
       @JsonKey(name: 'cost') int cost,
       @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'status') int status,
       @JsonKey(name: 'item_condition_map') ItemCondition? condition,
-      @JsonKey(name: 'pickup_location') String pickup_location});
+      @JsonKey(name: 'pickup_location') String pickup_location,
+      @JsonKey(name: 'order_status', includeIfNull: false)
+      OrderStatus order_status});
 
   $ItemConditionCopyWith<$Res>? get condition;
 }
@@ -89,9 +90,9 @@ class _$ReusableCopyWithImpl<$Res, $Val extends Reusable>
     Object? photo_url = null,
     Object? cost = null,
     Object? title = null,
-    Object? status = null,
     Object? condition = freezed,
     Object? pickup_location = null,
+    Object? order_status = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -118,10 +119,6 @@ class _$ReusableCopyWithImpl<$Res, $Val extends Reusable>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int,
       condition: freezed == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -130,6 +127,10 @@ class _$ReusableCopyWithImpl<$Res, $Val extends Reusable>
           ? _value.pickup_location
           : pickup_location // ignore: cast_nullable_to_non_nullable
               as String,
+      order_status: null == order_status
+          ? _value.order_status
+          : order_status // ignore: cast_nullable_to_non_nullable
+              as OrderStatus,
     ) as $Val);
   }
 
@@ -163,9 +164,10 @@ abstract class _$$ReusableImplCopyWith<$Res>
       @JsonKey(name: 'photo_url') String photo_url,
       @JsonKey(name: 'cost') int cost,
       @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'status') int status,
       @JsonKey(name: 'item_condition_map') ItemCondition? condition,
-      @JsonKey(name: 'pickup_location') String pickup_location});
+      @JsonKey(name: 'pickup_location') String pickup_location,
+      @JsonKey(name: 'order_status', includeIfNull: false)
+      OrderStatus order_status});
 
   @override
   $ItemConditionCopyWith<$Res>? get condition;
@@ -190,9 +192,9 @@ class __$$ReusableImplCopyWithImpl<$Res>
     Object? photo_url = null,
     Object? cost = null,
     Object? title = null,
-    Object? status = null,
     Object? condition = freezed,
     Object? pickup_location = null,
+    Object? order_status = null,
   }) {
     return _then(_$ReusableImpl(
       id: freezed == id
@@ -219,10 +221,6 @@ class __$$ReusableImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as int,
       condition: freezed == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -231,6 +229,10 @@ class __$$ReusableImplCopyWithImpl<$Res>
           ? _value.pickup_location
           : pickup_location // ignore: cast_nullable_to_non_nullable
               as String,
+      order_status: null == order_status
+          ? _value.order_status
+          : order_status // ignore: cast_nullable_to_non_nullable
+              as OrderStatus,
     ));
   }
 }
@@ -247,10 +249,11 @@ class _$ReusableImpl implements _Reusable {
           'https://images.pexels.com/photos/211492/pexels-photo-211492.jpeg?cs=srgb&dl=pexels-omkar-patyane-211492.jpg&fm=jpg',
       @JsonKey(name: 'cost') this.cost = 0,
       @JsonKey(name: 'title') this.title = 'title',
-      @JsonKey(name: 'status') this.status = 0,
       @JsonKey(name: 'item_condition_map') this.condition,
       @JsonKey(name: 'pickup_location')
-      this.pickup_location = 'No pickup address provided'});
+      this.pickup_location = 'No pickup address provided',
+      @JsonKey(name: 'order_status', includeIfNull: false)
+      this.order_status = OrderStatus.Approved});
 
   factory _$ReusableImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReusableImplFromJson(json);
@@ -274,18 +277,18 @@ class _$ReusableImpl implements _Reusable {
   @JsonKey(name: 'title')
   final String title;
   @override
-  @JsonKey(name: 'status')
-  final int status;
-  @override
   @JsonKey(name: 'item_condition_map')
   final ItemCondition? condition;
   @override
   @JsonKey(name: 'pickup_location')
   final String pickup_location;
+  @override
+  @JsonKey(name: 'order_status', includeIfNull: false)
+  final OrderStatus order_status;
 
   @override
   String toString() {
-    return 'Reusable(id: $id, owner: $owner, buyer: $buyer, photo_url: $photo_url, cost: $cost, title: $title, status: $status, condition: $condition, pickup_location: $pickup_location)';
+    return 'Reusable(id: $id, owner: $owner, buyer: $buyer, photo_url: $photo_url, cost: $cost, title: $title, condition: $condition, pickup_location: $pickup_location, order_status: $order_status)';
   }
 
   @override
@@ -300,17 +303,18 @@ class _$ReusableImpl implements _Reusable {
                 other.photo_url == photo_url) &&
             (identical(other.cost, cost) || other.cost == cost) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.status, status) || other.status == status) &&
             (identical(other.condition, condition) ||
                 other.condition == condition) &&
             (identical(other.pickup_location, pickup_location) ||
-                other.pickup_location == pickup_location));
+                other.pickup_location == pickup_location) &&
+            (identical(other.order_status, order_status) ||
+                other.order_status == order_status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, owner, buyer, photo_url,
-      cost, title, status, condition, pickup_location);
+      cost, title, condition, pickup_location, order_status);
 
   /// Create a copy of Reusable
   /// with the given fields replaced by the non-null parameter values.
@@ -330,16 +334,16 @@ class _$ReusableImpl implements _Reusable {
 
 abstract class _Reusable implements Reusable {
   factory _Reusable(
-          {@JsonKey(name: 'id', includeIfNull: false) final int? id,
-          @JsonKey(name: 'owner') final String owner,
-          @JsonKey(name: 'buyer') final String buyer,
-          @JsonKey(name: 'photo_url') final String photo_url,
-          @JsonKey(name: 'cost') final int cost,
-          @JsonKey(name: 'title') final String title,
-          @JsonKey(name: 'status') final int status,
-          @JsonKey(name: 'item_condition_map') final ItemCondition? condition,
-          @JsonKey(name: 'pickup_location') final String pickup_location}) =
-      _$ReusableImpl;
+      {@JsonKey(name: 'id', includeIfNull: false) final int? id,
+      @JsonKey(name: 'owner') final String owner,
+      @JsonKey(name: 'buyer') final String buyer,
+      @JsonKey(name: 'photo_url') final String photo_url,
+      @JsonKey(name: 'cost') final int cost,
+      @JsonKey(name: 'title') final String title,
+      @JsonKey(name: 'item_condition_map') final ItemCondition? condition,
+      @JsonKey(name: 'pickup_location') final String pickup_location,
+      @JsonKey(name: 'order_status', includeIfNull: false)
+      final OrderStatus order_status}) = _$ReusableImpl;
 
   factory _Reusable.fromJson(Map<String, dynamic> json) =
       _$ReusableImpl.fromJson;
@@ -363,14 +367,14 @@ abstract class _Reusable implements Reusable {
   @JsonKey(name: 'title')
   String get title;
   @override
-  @JsonKey(name: 'status')
-  int get status;
-  @override
   @JsonKey(name: 'item_condition_map')
   ItemCondition? get condition;
   @override
   @JsonKey(name: 'pickup_location')
   String get pickup_location;
+  @override
+  @JsonKey(name: 'order_status', includeIfNull: false)
+  OrderStatus get order_status;
 
   /// Create a copy of Reusable
   /// with the given fields replaced by the non-null parameter values.

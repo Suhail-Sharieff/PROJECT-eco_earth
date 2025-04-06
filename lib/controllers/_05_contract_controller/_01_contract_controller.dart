@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:eco_earth/enum/_02_order_status.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -39,7 +40,7 @@ class ContractController extends GetxController {
       await instance
           .from('contracts')
           .delete()
-          .eq('contract_status', 'COMPLETED');
+          .eq('order_status', 'Paid');
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -55,6 +56,24 @@ class ContractController extends GetxController {
     }
   }
 
+
+  Future<void> update_order_status_to(Contract c,OrderStatus newOrderStatus)async{
+    try {
+      // Convert enum to string (e.g. "Approved" if newOrderStatus == OrderStatus.Approved)
+      final statusString = newOrderStatus.toString().split('.').last;
+      await instance.from('contracts').update({
+        'order_status': statusString,
+      }).eq('id', c.id!);
+      await instance.from('reusables').update(
+        {
+
+        }
+      );
+    } catch (e) {
+      log(e.toString());
+      throw Exception(e.toString());
+    }
+  }
 
 
 }

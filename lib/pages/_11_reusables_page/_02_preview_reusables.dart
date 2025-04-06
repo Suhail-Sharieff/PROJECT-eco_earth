@@ -1,6 +1,7 @@
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/controllers/_06_reusables_controller/_01_resuables_controller.dart';
+import 'package:eco_earth/enum/_02_order_status.dart';
 import 'package:eco_earth/models/_04_reusables/reusable.dart';
 import 'package:eco_earth/pages/_11_reusables_page/_01_add_reusbale.dart';
 import 'package:eco_earth/pages/_11_reusables_page/_03_resuable_details.dart';
@@ -141,17 +142,17 @@ class _ReusablesPageState extends State<ReusablesPage> {
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
                   decoration: BoxDecoration(
-                    color: item.status == 0 ? Colors.green : Colors.red,
+                    color: item.order_status !=OrderStatus.Paid ? Colors.green : Colors.red,
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
-                    item.status == 0 ? "In Stock" : "Out of Stock",
+                    item.order_status !=OrderStatus.Paid ? "In Stock" : "Out of Stock",
                     style: const TextStyle(color: Colors.white, fontSize: 12),
                   ),
                 ),
 
                 // "Buy Now" Button (only if item is in stock)
-                if (item.status == 0)
+                if (item.order_status !=OrderStatus.Paid)
                   ElevatedButton(
                     onPressed: (){
                       // print(item);

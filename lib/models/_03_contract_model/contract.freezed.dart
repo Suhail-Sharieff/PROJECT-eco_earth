@@ -30,11 +30,11 @@ mixin _$Contract {
   String get to_id => throw _privateConstructorUsedError;
   @JsonKey(name: 'customer_name')
   String get customer_name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'contract_status')
-  String get contract_status => throw _privateConstructorUsedError;
   @JsonKey(name: 'item_number_map')
   Map<String, dynamic> get item_number_map =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_status', includeIfNull: false)
+  OrderStatus get order_status => throw _privateConstructorUsedError;
 
   /// Serializes this Contract to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,8 +57,9 @@ abstract class $ContractCopyWith<$Res> {
       @JsonKey(name: 'from_id') String from_id,
       @JsonKey(name: 'to_id') String to_id,
       @JsonKey(name: 'customer_name') String customer_name,
-      @JsonKey(name: 'contract_status') String contract_status,
-      @JsonKey(name: 'item_number_map') Map<String, dynamic> item_number_map});
+      @JsonKey(name: 'item_number_map') Map<String, dynamic> item_number_map,
+      @JsonKey(name: 'order_status', includeIfNull: false)
+      OrderStatus order_status});
 }
 
 /// @nodoc
@@ -81,8 +82,8 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
     Object? from_id = null,
     Object? to_id = null,
     Object? customer_name = null,
-    Object? contract_status = null,
     Object? item_number_map = null,
+    Object? order_status = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -105,14 +106,14 @@ class _$ContractCopyWithImpl<$Res, $Val extends Contract>
           ? _value.customer_name
           : customer_name // ignore: cast_nullable_to_non_nullable
               as String,
-      contract_status: null == contract_status
-          ? _value.contract_status
-          : contract_status // ignore: cast_nullable_to_non_nullable
-              as String,
       item_number_map: null == item_number_map
           ? _value.item_number_map
           : item_number_map // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
+      order_status: null == order_status
+          ? _value.order_status
+          : order_status // ignore: cast_nullable_to_non_nullable
+              as OrderStatus,
     ) as $Val);
   }
 }
@@ -131,8 +132,9 @@ abstract class _$$ContractImplCopyWith<$Res>
       @JsonKey(name: 'from_id') String from_id,
       @JsonKey(name: 'to_id') String to_id,
       @JsonKey(name: 'customer_name') String customer_name,
-      @JsonKey(name: 'contract_status') String contract_status,
-      @JsonKey(name: 'item_number_map') Map<String, dynamic> item_number_map});
+      @JsonKey(name: 'item_number_map') Map<String, dynamic> item_number_map,
+      @JsonKey(name: 'order_status', includeIfNull: false)
+      OrderStatus order_status});
 }
 
 /// @nodoc
@@ -153,8 +155,8 @@ class __$$ContractImplCopyWithImpl<$Res>
     Object? from_id = null,
     Object? to_id = null,
     Object? customer_name = null,
-    Object? contract_status = null,
     Object? item_number_map = null,
+    Object? order_status = null,
   }) {
     return _then(_$ContractImpl(
       id: freezed == id
@@ -177,14 +179,14 @@ class __$$ContractImplCopyWithImpl<$Res>
           ? _value.customer_name
           : customer_name // ignore: cast_nullable_to_non_nullable
               as String,
-      contract_status: null == contract_status
-          ? _value.contract_status
-          : contract_status // ignore: cast_nullable_to_non_nullable
-              as String,
       item_number_map: null == item_number_map
           ? _value._item_number_map
           : item_number_map // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
+      order_status: null == order_status
+          ? _value.order_status
+          : order_status // ignore: cast_nullable_to_non_nullable
+              as OrderStatus,
     ));
   }
 }
@@ -199,9 +201,10 @@ class _$ContractImpl implements _Contract {
       @JsonKey(name: 'from_id') this.from_id = 'no-from-id',
       @JsonKey(name: 'to_id') this.to_id = 'no-to-id',
       @JsonKey(name: 'customer_name') this.customer_name = 'no-customer-name',
-      @JsonKey(name: 'contract_status') this.contract_status = 'Pending',
       @JsonKey(name: 'item_number_map')
-      final Map<String, dynamic> item_number_map = const {}})
+      final Map<String, dynamic> item_number_map = const {},
+      @JsonKey(name: 'order_status', includeIfNull: false)
+      this.order_status = OrderStatus.Approved})
       : _item_number_map = item_number_map;
 
   factory _$ContractImpl.fromJson(Map<String, dynamic> json) =>
@@ -222,9 +225,6 @@ class _$ContractImpl implements _Contract {
   @override
   @JsonKey(name: 'customer_name')
   final String customer_name;
-  @override
-  @JsonKey(name: 'contract_status')
-  final String contract_status;
   final Map<String, dynamic> _item_number_map;
   @override
   @JsonKey(name: 'item_number_map')
@@ -235,8 +235,12 @@ class _$ContractImpl implements _Contract {
   }
 
   @override
+  @JsonKey(name: 'order_status', includeIfNull: false)
+  final OrderStatus order_status;
+
+  @override
   String toString() {
-    return 'Contract(id: $id, created_at: $created_at, from_id: $from_id, to_id: $to_id, customer_name: $customer_name, contract_status: $contract_status, item_number_map: $item_number_map)';
+    return 'Contract(id: $id, created_at: $created_at, from_id: $from_id, to_id: $to_id, customer_name: $customer_name, item_number_map: $item_number_map, order_status: $order_status)';
   }
 
   @override
@@ -251,10 +255,10 @@ class _$ContractImpl implements _Contract {
             (identical(other.to_id, to_id) || other.to_id == to_id) &&
             (identical(other.customer_name, customer_name) ||
                 other.customer_name == customer_name) &&
-            (identical(other.contract_status, contract_status) ||
-                other.contract_status == contract_status) &&
             const DeepCollectionEquality()
-                .equals(other._item_number_map, _item_number_map));
+                .equals(other._item_number_map, _item_number_map) &&
+            (identical(other.order_status, order_status) ||
+                other.order_status == order_status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -266,8 +270,8 @@ class _$ContractImpl implements _Contract {
       from_id,
       to_id,
       customer_name,
-      contract_status,
-      const DeepCollectionEquality().hash(_item_number_map));
+      const DeepCollectionEquality().hash(_item_number_map),
+      order_status);
 
   /// Create a copy of Contract
   /// with the given fields replaced by the non-null parameter values.
@@ -293,9 +297,10 @@ abstract class _Contract implements Contract {
       @JsonKey(name: 'from_id') final String from_id,
       @JsonKey(name: 'to_id') final String to_id,
       @JsonKey(name: 'customer_name') final String customer_name,
-      @JsonKey(name: 'contract_status') final String contract_status,
       @JsonKey(name: 'item_number_map')
-      final Map<String, dynamic> item_number_map}) = _$ContractImpl;
+      final Map<String, dynamic> item_number_map,
+      @JsonKey(name: 'order_status', includeIfNull: false)
+      final OrderStatus order_status}) = _$ContractImpl;
 
   factory _Contract.fromJson(Map<String, dynamic> json) =
       _$ContractImpl.fromJson;
@@ -316,11 +321,11 @@ abstract class _Contract implements Contract {
   @JsonKey(name: 'customer_name')
   String get customer_name;
   @override
-  @JsonKey(name: 'contract_status')
-  String get contract_status;
-  @override
   @JsonKey(name: 'item_number_map')
   Map<String, dynamic> get item_number_map;
+  @override
+  @JsonKey(name: 'order_status', includeIfNull: false)
+  OrderStatus get order_status;
 
   /// Create a copy of Contract
   /// with the given fields replaced by the non-null parameter values.

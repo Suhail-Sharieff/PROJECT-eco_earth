@@ -15,9 +15,11 @@ _$ContractImpl _$$ContractImplFromJson(Map<String, dynamic> json) =>
       from_id: json['from_id'] as String? ?? 'no-from-id',
       to_id: json['to_id'] as String? ?? 'no-to-id',
       customer_name: json['customer_name'] as String? ?? 'no-customer-name',
-      contract_status: json['contract_status'] as String? ?? 'Pending',
       item_number_map:
           json['item_number_map'] as Map<String, dynamic>? ?? const {},
+      order_status:
+          $enumDecodeNullable(_$OrderStatusEnumMap, json['order_status']) ??
+              OrderStatus.Approved,
     );
 
 Map<String, dynamic> _$$ContractImplToJson(_$ContractImpl instance) =>
@@ -28,6 +30,15 @@ Map<String, dynamic> _$$ContractImplToJson(_$ContractImpl instance) =>
       'from_id': instance.from_id,
       'to_id': instance.to_id,
       'customer_name': instance.customer_name,
-      'contract_status': instance.contract_status,
       'item_number_map': instance.item_number_map,
+      'order_status': _$OrderStatusEnumMap[instance.order_status]!,
     };
+
+const _$OrderStatusEnumMap = {
+  OrderStatus.Approved: 'Approved',
+  OrderStatus.Packed: 'Packed',
+  OrderStatus.Shipped: 'Shipped',
+  OrderStatus.Delivered: 'Delivered',
+  OrderStatus.Paid: 'Paid',
+  OrderStatus.Cancelled: 'Cancelled',
+};

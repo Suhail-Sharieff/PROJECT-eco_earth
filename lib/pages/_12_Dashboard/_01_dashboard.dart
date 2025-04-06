@@ -1,6 +1,7 @@
 import 'package:eco_earth/constants/_01_routes.dart';
 import 'package:eco_earth/constants/_04_appbar.dart';
 import 'package:eco_earth/controllers/_06_reusables_controller/_01_resuables_controller.dart';
+import 'package:eco_earth/enum/_02_order_status.dart';
 import 'package:eco_earth/models/_04_reusables/reusable.dart';
 import 'package:eco_earth/pages/_12_Dashboard/_02_track_order.dart';
 import 'package:flutter/material.dart';
@@ -181,17 +182,16 @@ class _DashBoardPageState extends State<DashBoardPage> {
             trailing: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: item.status == 1
-                    ? Colors.green.withOpacity(0.2)
-                    : Colors.orange.withOpacity(0.2),
+                color:
+                     Colors.orange.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
-                item.status == 1 ? "Recycled" : "Pending",
+                item.order_status.name,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  color: item.status == 1 ? Colors.green : Colors.orange,
+                  color: item.order_status !=OrderStatus.Cancelled ? Colors.green[900] : Colors.red,
                 ),
               ),
             ),
@@ -232,44 +232,18 @@ class _DashBoardPageState extends State<DashBoardPage> {
             ],
           ),
           // Show the Track Order button if item.status is 0 (Pending)
-          if (item.status == 0)
+          // if (item.order_status != OrderStatus.Paid)
             Padding(
               padding:
               const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
               child: ElevatedButton(onPressed: (){
-                List<StepModel> steps = [
-                  StepModel(
-                    type: StepType.personalInfo,
-                    title: "Personal Info",
-                    description: "Enter your personal information",
-                    isCompleted: true,
-                  ),
-                  StepModel(
-                    type: StepType.accountInfo,
-                    title: "Account Info",
-                    description: "Setup your account credentials",
-                    isCompleted: false,
-                  ),
-                  StepModel(
-                    type: StepType.review,
-                    title: "Review",
-                    description: "Review your details before submitting",
-                    isCompleted: false,
-                  ),
-                  StepModel(
-                    type: StepType.confirmation,
-                    title: "Confirmation",
-                    description: "Confirmation of your submission",
-                    isCompleted: false,
-                  ),
-                ];
 
                 // Navigate to the StepperPage when tapped
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CustomStepper(steps: steps)),
+                  MaterialPageRoute(builder: (context) => CustomStepper(currentStatus: item.order_status)),
                 );
-              }, child: Text('Track Order')),
+              }, child: const Text('Track Order')),
             ),
           const SizedBox(height: 8),
         ],

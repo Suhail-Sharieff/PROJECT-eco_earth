@@ -1,4 +1,5 @@
 import 'package:eco_earth/controllers/_06_reusables_controller/_01_resuables_controller.dart';
+import 'package:eco_earth/enum/_02_order_status.dart';
 import 'package:eco_earth/landing_page.dart';
 import 'package:eco_earth/models/_04_reusables/reusable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -136,7 +137,7 @@ class _ReusableDetailsState extends State<ReusableDetails> {
                     _buildDetailRow(
                         Icons.attach_money, "Cost", "₹${item.cost}"),
                     const Divider(),
-                    _buildStatusTag(item.status),
+                    Chip(backgroundColor:Colors.greenAccent,label: Text(item.order_status!=OrderStatus.Paid?"In Stock ✅":"Not Available !")),
                     const Divider(),
 
                     // Purchased Date (New Field)
@@ -196,7 +197,7 @@ class _ReusableDetailsState extends State<ReusableDetails> {
             const SizedBox(height: 20),
 
             // Buy Now Button (Only if item is in stock)
-            if (item.status == 0)
+            if (item.order_status == OrderStatus.Approved)
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
