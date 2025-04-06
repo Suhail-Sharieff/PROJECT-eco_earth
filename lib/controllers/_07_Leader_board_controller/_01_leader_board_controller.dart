@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -5,11 +8,10 @@ class LeaderBoardController extends GetxController {
   final instance = Supabase.instance.client;
 // Observable list of users
 
-  Future<List<User>> getLeaderBoard() async {
+  Future<List<Map<String, dynamic>>> getLeaderBoard() async {
     final List<Map<String, dynamic>> res = await instance.from('users').select('*');
-    List<User> users =res.map((e) => User.fromJson(e)).toList();
-    users.sort((x,y)=>y.user_points.compareTo(x.user_points));
-    return users;
+
+    return res;
   }
 }
 
@@ -22,7 +24,7 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      user_name: json['user_name'],
+      user_name: json['user_name'] ?? "You",
       user_points: json['user_points'],
     );
   }

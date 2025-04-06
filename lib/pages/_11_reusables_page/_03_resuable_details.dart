@@ -197,7 +197,7 @@ class _ReusableDetailsState extends State<ReusableDetails> {
             const SizedBox(height: 20),
 
             // Buy Now Button (Only if item is in stock)
-            if (item.order_status == OrderStatus.Approved)
+            if (item.order_status != OrderStatus.Paid)
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(

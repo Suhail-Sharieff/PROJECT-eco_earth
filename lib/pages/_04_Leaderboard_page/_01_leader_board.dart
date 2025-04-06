@@ -111,16 +111,17 @@ class _LeaderBoardPageState extends State<LeaderBoardPage> {
             ),
             // Leaderboard List
             Expanded(
-              child: FutureBuilder<List<User>>(
+              child: FutureBuilder<List<Map<String,dynamic>>>(
                 future: controller.getLeaderBoard(),
                 builder: (_, snap) {
                   if (snap.connectionState == ConnectionState.waiting) {
                     return Center(child: Lottie.asset('assets/lottie/ai.json'));
                   }
-                  if (!snap.hasData || snap.data!.isEmpty) {
+                  if (snap.hasData==false) {
                     return const Center(child: Text('No data!'));
                   }
-                  final List<User> users = snap.data!;
+                  final List<User> users = snap.data!.map((e)=>User.fromJson(e)).toList();
+
                   return ListView.builder(
                     padding: const EdgeInsets.all(8.0),
                     itemCount: users.length,

@@ -55,7 +55,7 @@ class ReusableController extends GetxController {
             item_number_map: {item.title: item.cost},
             from_id: item.owner,
             to_id: buyer_uid,
-            customer_name: FirebaseAuth.instance.currentUser!.displayName!,
+            customer_name: FirebaseAuth.instance.currentUser!.displayName==null?FirebaseAuth.instance.currentUser!.email!:FirebaseAuth.instance.currentUser!.displayName!,
             order_status: OrderStatus.Approved,
           ));
     } catch (e) {
